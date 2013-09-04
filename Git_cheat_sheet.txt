@@ -1,0 +1,46 @@
+-------------------GIT CHEAT SHEET----------------------------------------------
+This guide assumes you have git properly installed and are using either git
+bash or git integrated with your normal command line.
+
+-----GETTING OUR PROJECT FROM GITHUB-----
+Pick a directory where you want to store the project and type:
+    
+    git clone https://github.com/ABitTooCalm/-ducking-octo-shame.git path/to/directory
+    
+This will set up our project at the path specified on your computer. Any time
+you want to use git with our project you should navigate your git terminal to
+this directory.
+
+-----GETTING THE MOST RECENT VERSION OF THE PROJECT-----
+The clone command from github will have automagically set the necessary settings
+to allow you to update the project.
+
+Every time you start work on the project, you should first get the most up to
+date version of the project from github by using:
+
+    git pull
+    
+Once this operation is complete, your version of the project will be up to date
+and you can get to work.
+
+-----COMMITTING YOUR CHANGES TO GIT-----
+In order to save your changes to the git version history on your machine, first
+add any new files to version control by doing:
+
+    git add file
+    
+In order to finalize the commit type:
+
+    git commit -a -m "Commit message."
+    
+Where "Commit message." is a single short sentence describing why you are committing
+in quotes. After this all of your changes are saved locally by Git, you should
+make sure to commit often so that you can roll back any changes that messed things up.
+
+
+-----PUSHING CHANGES YOU'VE MADE TO THE PROJECT ON GITHUB-----
+In order to push any changes you've made first do this:
+
+    git push origin master
+
+enter your github username and password when prompted, and you're done!
