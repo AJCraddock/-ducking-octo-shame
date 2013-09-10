@@ -1,8 +1,9 @@
-import os, sys
 import pyglet, control, view, model
 
+SCREEN_X, SCREEN_Y = 800, 600
+
 # instantiate the window
-window = pyglet.window.Window()
+window = pyglet.window.Window(SCREEN_X, SCREEN_Y)
 
 @window.event
 def on_key_press(symbol, modifiers):
