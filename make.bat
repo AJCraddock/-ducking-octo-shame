@@ -1,2 +1,4 @@
-python game/src/Main.py
-rm -rf game/src/__pycache__
+cd game/src
+python main.py
+rm -rf __pycache__
+cd ../..
