@@ -10,5 +10,10 @@ def on_key_press(symbol, modifiers):
 @window.event
 def on_draw():
     window.clear()
+    
+    print('working')
+    # update and render the game
+    control.Engine.update()
+    view.Renderer.render(window)
 
 pyglet.app.run()
