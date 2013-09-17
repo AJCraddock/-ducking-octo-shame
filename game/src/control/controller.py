@@ -4,8 +4,7 @@ from pyglet.window import key
 class Controller:
     def __init__(self):
         self.keys_down = {'A': False, 'D': False, 'W': False, 'S': False}
-        
-        
+                
     def on_key_press(self, symbol, modifiers):
         if symbol == key.A:
             self.keys_down['A'] = True
@@ -26,12 +25,16 @@ class Controller:
         elif symbol == key.S:
             self.keys_down['S'] = False
         
-    def handle_input(self, dt):
+    def handle_input(self, player):
         if self.keys_down['A']:
-            print("A is pressed")
-        if self.keys_down['D']:
-            print("D is pressed")
+            player.dx = 0-player.MAX_DX
+        elif self.keys_down['D']:
+            player.dx = player.MAX_DX
+        else:
+            player.dx = 0
         if self.keys_down['W']:
-            print("W is pressed")
-        if self.keys_down['S']:
-            print("S is pressed")
+            player.dy = player.MAX_DY
+        elif self.keys_down['S']:
+            player.dy = 0-player.MAX_DY
+        else:
+            player.dy = 0

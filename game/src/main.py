@@ -21,10 +21,10 @@ def on_key_release(symbol, modifiers):
 def on_draw():
     window.clear()
     renderer.render()
-    
 
 # update and render the game
 clock.schedule_interval(engine.update, 1/60.0)
+# clock.schedule(on_draw)
 # clock.schedule_interval(renderer.render, 1/60.0)
 
 pyglet.app.run()
