@@ -7,7 +7,7 @@ SCREEN_X, SCREEN_Y = 800, 600
 window = pyglet.window.Window(SCREEN_X, SCREEN_Y)
 controller = control.controller.Controller()
 engine = control.engine.Engine(controller)
-renderer = view.renderer.Renderer()
+renderer = view.renderer.Renderer(engine)
 
 @window.event
 def on_key_press(symbol, modifiers):
