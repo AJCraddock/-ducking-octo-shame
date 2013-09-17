@@ -5,9 +5,9 @@ SCREEN_X, SCREEN_Y = 800, 600
 
 # instantiate the window
 window = pyglet.window.Window(SCREEN_X, SCREEN_Y)
-controller = control.controller.Controller()
-engine = control.engine.Engine(controller)
-renderer = view.renderer.Renderer()
+controller = control.Controller.Controller()
+engine = control.Engine.Engine(controller)
+renderer = view.Renderer.Renderer()
 
 # these don't seem to work
 #keys = pyglet.window.key.KeyStateHandler()
