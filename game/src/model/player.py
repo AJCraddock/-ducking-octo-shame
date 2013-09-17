@@ -11,9 +11,10 @@ class Player:
         self.dy = 0
     
     def draw(self):
+        pyglet.gl.glColor3f(150, 60, 70)
         pyglet.graphics.draw(4, pyglet.gl.GL_POLYGON, 
             ('v2i', (self.x, self.y, 
+            self.x, self.y+10,
             self.x+10, self.y+10,
-            self.x+10, self.y,
-            self.x, self.y+10)))
+            self.x+10, self.y)))
             
