@@ -46,12 +46,12 @@ class Controller:
     
     def jump(self, player):
         floor = 50
-        print "IN the jump method"
-        if player.y == floor and player.dy == 0:
-            player.dy= player.MAX_DY*5
-            print "in first if statment", player.y , player.dy            
-        while (player.y > 50):
-            player.y -=1
+        print "IN the jump method" #debugging
+        if player.y == floor and player.dy == 0:   #if player is on ground and not moving(the not moving part needs to go
+            player.dy= player.MAX_DY*5 #adjust the y coordinate
+            print "in first if statment", player.y , player.dy #debugging           
+        while (player.y > 50): #suppose to be gravity
+            player.y -=1      #trying to bring him down was not working 
             if player.dy > 0:
                player.dy -=4
        # if player.y > floor and player.dy < 0:
@@ -60,7 +60,7 @@ class Controller:
         #    player.dy -= 20
             print "in second", player.y, player.dy               
         
-        if player.y < floor:
+        if player.y < floor:   #stop falling
             print "in third", player.y, player.dy    
             player.y = floor
             player.dy = 0
