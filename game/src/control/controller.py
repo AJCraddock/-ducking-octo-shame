@@ -60,7 +60,7 @@ class Controller:
         #    player.dy -= 20
             print "in second", player.y, player.dy               
         
-        if player.y < floor:   #stop falling
+        if player.y < floor:   #stop falling 
             print "in third", player.y, player.dy    
             player.y = floor
             player.dy = 0
