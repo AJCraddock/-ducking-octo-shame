@@ -32,12 +32,11 @@ class Controller:
             player.dx = player.MAX_DX
         else:
             player.dx = 0
-        if self.keys_down['W']:
+        if self.keys_down['SPACE']:
             self.jump(player)
     
     def jump(self, player):
         floor = 50
         if player.y == floor and player.dy == 0:
-            player.dy = player.MAX_DX*5
-
+            player.dy = player.MAX_DY*5
 
