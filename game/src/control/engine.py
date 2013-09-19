@@ -23,4 +23,5 @@ def gravity(object):
     if object.y > FLOOR:
         object.dy -= GRAVITY
     if object.y < FLOOR:
-        object.dy = FLOOR
+        object.y = FLOOR
+        object.dy = 0
