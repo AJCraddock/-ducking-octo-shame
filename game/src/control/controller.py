@@ -37,8 +37,7 @@ class Controller:
     
     def jump(self, player):
         floor = 50
-        print "IN the jump method" #debugging
-        if player.y == floor and player.dy == 0:   #if player is on ground and not moving(the not moving part needs to go
-            player.dy = 20 #adjust the y coordinate
+        if player.y == floor and player.dy == 0:
+            player.dy = player.MAX_DX*5
 
 
