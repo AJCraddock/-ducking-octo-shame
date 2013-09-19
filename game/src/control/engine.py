@@ -1,5 +1,8 @@
 import pyglet, model, math
 
+FLOOR = 50
+GRAVITY = 3
+
 class Engine:
     def __init__(self, controller):
         self.controller = controller
@@ -10,7 +13,14 @@ class Engine:
         self.controller.handle_input(self.player)
         # need to move the player based on dt, the player should be moving a certain amount of distance per second
         #print dt
-        movement = int(math.floor(self.player.dx * dt*30))
-        print movement
-        self.player.x += movement 
+        # movement = int(math.floor(self.player.dx * dt*30))
+        # print movement
+        gravity(self.player)
+        self.player.x += self.player.dx 
         self.player.y += self.player.dy
+    
+def gravity(object):
+    if object.y > FLOOR:
+        object.dy -= GRAVITY
+    if object.y < FLOOR:
+        object.dy = FLOOR

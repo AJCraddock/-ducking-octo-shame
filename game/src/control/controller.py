@@ -29,7 +29,6 @@ class Controller:
         if self.keys_down['A']:
             player.dx = 0-player.MAX_DX
         elif self.keys_down['D']:
-            print "moved forward", player.x
             player.dx = player.MAX_DX
         else:
             player.dx = 0
@@ -48,21 +47,21 @@ class Controller:
         floor = 50
         print "IN the jump method" #debugging
         if player.y == floor and player.dy == 0:   #if player is on ground and not moving(the not moving part needs to go
-            player.dy= player.MAX_DY*5 #adjust the y coordinate
-            print "in first if statment", player.y , player.dy #debugging           
-        while (player.y > 50): #suppose to be gravity
-            player.y -=1      #trying to bring him down was not working 
-            if player.dy > 0:
-               player.dy -=4
+            player.dy = 20 #adjust the y coordinate
+            #print "in first if statment", player.y , player.dy #debugging           
+        # while (player.y > 50): #suppose to be gravity
+            # player.y -=1      #trying to bring him down was not working 
+            # if player.dy > 0:
+               # player.dy -=4
        # if player.y > floor and player.dy < 0:
-        #    player.dy -= 2   
+           # player.dy -= 2   
        # if player.dy > 20:
-        #    player.dy -= 20
-            print "in second", player.y, player.dy               
+           # player.dy -= 20
+            # print "in second", player.y, player.dy               
         
-        if player.y < floor:   #stop falling 
-            print "in third", player.y, player.dy    
-            player.y = floor
-            player.dy = 0
+        # if player.y < floor:   #stop falling 
+            # print "in third", player.y, player.dy    
+            # player.y = floor
+            # player.dy = 0
 
 
