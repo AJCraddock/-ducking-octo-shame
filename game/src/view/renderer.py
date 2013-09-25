@@ -7,4 +7,4 @@ class Renderer:
     # draw all of the game models and graphics to the window
     def render(self):
         self.engine.player.draw()
-        pass
+        self.engine.ground.draw()

@@ -1,2 +1,3 @@
-__all__ = ['player']
+__all__ = ['player', 'ground']
 import player
+import ground

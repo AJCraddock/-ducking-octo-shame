@@ -6,7 +6,10 @@ GRAVITY = 3
 class Engine:
     def __init__(self, controller):
         self.controller = controller
+
+        # temporary object declarations
         self.player = model.player.Player(50, 50)
+        self.ground = model.ground.Ground(0, 30, 800, 20)
 
     # update the position of all models for the next iteration of the game loop
     def update(self, dt):
