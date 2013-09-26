@@ -1,2 +1,2 @@
-import engine, controller
-__all__ = ["engine", "controller"]
+import engine, player_controller
+__all__ = ["engine", "player_controller"]

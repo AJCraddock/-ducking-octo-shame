@@ -5,7 +5,7 @@ SCREEN_X, SCREEN_Y = 800, 600
 
 # instantiate the window
 window = pyglet.window.Window(SCREEN_X, SCREEN_Y, vsync = True)
-controller = control.controller.Controller()
+controller = control.player_controller.Player_Controller()
 engine = control.engine.Engine(controller)
 renderer = view.renderer.Renderer(engine, window)
 fps_display = pyglet.clock.ClockDisplay()
