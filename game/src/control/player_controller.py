@@ -25,7 +25,7 @@ class Player_Controller:
         elif symbol == key.SPACE:
             self.keys_down['SPACE'] = False
         
-    def handle_input(self, player):            
+    def handle_input(self, player):
         if self.keys_down['A']:
             player.dx = 0-player.MAX_DX
         elif self.keys_down['D']:
