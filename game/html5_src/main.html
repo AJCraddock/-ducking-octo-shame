@@ -7,6 +7,7 @@
     <script src="controller/player_controller.js"></script>
     <script src="model/map.js"></script>
     <script src="model/player.js"></script>
+    <script src="model/static_object.js"></script>
 </head>
 <body>
     <canvas id="main_canvas" width="800" height="600" 
@@ -16,7 +17,9 @@
         //temporary object declarations
         var player_controller = new PlayerController();
         var player = new Player(80, 80);
-        var map = new Map(player);
+        var objects = new Array();
+        objects.push(new StaticObject(0, 525, 800, 10));
+        var map = new Map(player, objects);
         var engine = new Engine(player_controller, map);
 
         //set up the canvas.
@@ -46,6 +49,9 @@
 
             //draw the game objects
             engine.player.draw(graphics);
+            for(var i = 0; i < map.objects.length; i++){
+                map.objects[i].draw(graphics);
+            }
         }
 
         function main_loop(){
