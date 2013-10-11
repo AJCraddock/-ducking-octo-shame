@@ -14,7 +14,6 @@ function PlayerController(){
 
     this.on_keyup = function(event){
         var key = event.keyCode;
-        console.log(key);
         if (key == KeyboardEvent.DOM_VK_A){
             this.keys_down.A = false;
         }else if(key == KeyboardEvent.DOM_VK_D){
@@ -38,9 +37,9 @@ function PlayerController(){
     };
 
     this.jump = function(player){
-        floor = 500;
-        if (player.y == floor && player.dy == 0){
-            player.dy = player.MAX_DY*-5;
+        if (player.on_ground && player.ddy == 0){
+            player.ddy = 0-player.MAX_DDY;
+            player.on_ground = false;
         }
     };
 }
