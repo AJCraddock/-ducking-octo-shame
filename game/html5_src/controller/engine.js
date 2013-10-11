@@ -1,22 +1,21 @@
-function Engine(controller){
-    var FLOOR = 50;
+function Engine(player_controller, map){
+    var FLOOR = 500;
     var GRAVITY = 3;
-    this.controller = controller;
-
-    //temporary object declarations
-    // this.player = player;
-    // this.ground = ground;
+    this.player_controller = player_controller;
+    this.map = map;
+    this.player = map.player;
 
     this.update = function(){
+        this.player_controller.handle_input(player);
         gravity(this.player);
         this.player.x += this.player.dx;
         this.player.y += this.player.dy;
     };
 
-    this.prototype.gravity = function(object){
-        if (object.y > FLOOR){
-            object.dy -= GRAVITY;
-        }else if(object.y < FLOOR){
+    var gravity = function(object){
+        if (object.y < FLOOR){
+            object.dy += GRAVITY;
+        }else if(object.y > FLOOR){
             object.y = FLOOR;
             object.dy = 0;
         }

@@ -3,15 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <title>Bill Game</title>
-    <script src="/controller/engine.js"></script>
+    <script src="controller/engine.js"></script>
+    <script src="controller/player_controller.js"></script>
+    <script src="model/map.js"></script>
+    <script src="model/player.js"></script>
 </head>
 <body>
-    <canvas id="main_canvas" style="background-color:black; padding:0px; 
-    border:0px; margin:0px; height:600px; width:800px;">
+    <canvas id="main_canvas" width="800" height="600" 
+    style="background-color:black; padding:0px; border:0px; margin:0px;">
     </canvas>
     <script type="text/javascript">
-        var controller = 0;
-        var engine = new Engine(controller);
+        //temporary object declarations
+        var player_controller = new PlayerController();
+        var player = new Player(80, 80);
+        var map = new Map(player);
+        var engine = new Engine(player_controller, map);
+
+        //set up the canvas.
         var main_canvas = document.getElementById('main_canvas');
         //give the main_canvas focus
         main_canvas.setAttribute('tabindex', '0');
@@ -23,13 +31,28 @@
         var graphics = main_canvas.getContext('2d');
 
         function on_keydown(event){
+            player_controller.on_keydown(event);
         }
 
         function on_keyup(event){
+            player_controller.on_keyup(event);
+        }
+
+        function render(){
+            window.requestAnimationFrame(render);
+            //blank the screen
+            graphics.fillStyle = '#000000';
+            graphics.fillRect(0, 0, main_canvas.width, main_canvas.height);
+
+            //draw the game objects
+            engine.player.draw(graphics);
         }
 
         function main_loop(){
-            setInterval()
+            //schedule the engine's update method
+            setInterval(engine.update, 1000/60);
+            //call the renderer's render method to start the animation loop
+            render();
         }
 
         main_loop();
