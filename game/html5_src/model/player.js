@@ -9,9 +9,15 @@ function Player(x, y){
     this.height = 25;
     this.on_ground = false;
 
+    this.last_render_x = 0;
+    this.last_render_y = 0;
+
 
     this.draw = function(graphics){
+        graphics.clearRect(this.last_render_x-4, this.last_render_y-4, this.width+8, this.height+8);
         graphics.strokeStyle = '#FF0000';
         graphics.strokeRect(this.x, this.y, this.width, this.height);
+        this.last_render_x = this.x;
+        this.last_render_y = this.y;
     };
 }
