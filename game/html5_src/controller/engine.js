@@ -14,23 +14,28 @@ function Engine(player_controller, map){
         for(var i = 0; i < map.objects.length; i++){
             var o = map.objects[i];
             collision = check_player_collision(o);
+            var temp_x, temp_y;
+            var temp_on_ground;
             if(collision){
-                //player is to the left of object
-                if(player.x < o.x){
-
-                }else{ //player is to the right of object
-
-                }
                 //player is above object
-                if (player.y < o.y){
-                    while(player.y+player.height > o.y){
-                        player.y-=1;
-                    }
-                    player.on_ground = true;
+                if (this.player.y < o.y){
+                    temp_y = o.y-this.player.height;
+                    temp_on_ground = true;
                 }else{ //player is below object
-                    while(player.y < o.y+o.height){
-                        player.y+=1;
-                    }
+                    temp_y = o.y+o.height
+                    temp_on_ground = false;
+                }
+                if (this.player.x < o.x){
+                    temp_x = o.x-this.player.width;
+                }else{
+                    temp_x = o.x+o.width;
+                }
+                //check which overlap is greater
+                if(Math.abs(temp_x-player.x) < Math.abs(temp_y-player.y)){
+                    player.x = temp_x;
+                }else{
+                    player.y = temp_y;
+                    player.on_ground = temp_on_ground;
                 }
             }
         }
