@@ -13,31 +13,41 @@ function Engine(player_controller, map){
         //check for player collisions
         for(var i = 0; i < map.objects.length; i++){
             var o = map.objects[i];
-            collision = check_player_collision(o);
-            var temp_x, temp_y;
-            var temp_on_ground;
+            var collision = check_player_collision(o);
             if(collision){
-                //player is above object
-                if (this.player.y < o.y){
-                    temp_y = o.y-this.player.height;
-                    temp_on_ground = true;
-                }else{ //player is below object
-                    temp_y = o.y+o.height
-                    temp_on_ground = false;
-                }
-                if (this.player.x < o.x){
-                    temp_x = o.x-this.player.width;
-                }else{
-                    temp_x = o.x+o.width;
-                }
-                //check which overlap is greater
-                if(Math.abs(temp_x-player.x) < Math.abs(temp_y-player.y)){
-                    player.x = temp_x;
-                }else{
-                    player.y = temp_y;
-                    player.on_ground = temp_on_ground;
-                }
+                handle_player_collision(o);
             }
+        }
+    };
+
+    var handle_player_collision = function(o){
+        var temp_x, temp_y, temp_dx, temp_dy;
+        var temp_on_ground;
+        //player is above object
+        if (this.player.y < o.y){
+            temp_y = o.y-this.player.height;
+            temp_on_ground = true;
+            temp_dy = 0;
+        }else{ //player is below object
+            temp_y = o.y+o.height
+            temp_on_ground = false;
+            temp_dy = 0;
+        }
+        if (this.player.x < o.x){
+            temp_x = o.x-this.player.width;
+            temp_dx = 0;
+        }else{
+            temp_x = o.x+o.width;
+            temp_dx = 0;
+        }
+        //check which overlap is greater
+        if(Math.abs(temp_x-this.player.x) < Math.abs(temp_y-this.player.y)){
+            this.player.x = temp_x;
+            this.player.dx = temp_dx;
+        }else{
+            this.player.y = temp_y;
+            this.player.on_ground = temp_on_ground;
+            this.player.dy = temp_dy;
         }
     };
 
