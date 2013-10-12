@@ -19,6 +19,7 @@
         var player = new Player(80, 80);
         var objects = new Array();
         objects.push(new StaticObject(0, 525, 600, 10));
+        objects.push(new StaticObject(400, 425, 90, 10));
         var map = new Map(player, objects);
         var engine = new Engine(player_controller, map);
 

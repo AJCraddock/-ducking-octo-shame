@@ -37,8 +37,8 @@ function PlayerController(){
     };
 
     this.jump = function(player){
-        if (player.on_ground && player.ddy == 0){
-            player.ddy = 0-player.MAX_DDY;
+        if (player.on_ground){
+            player.dy = 0-player.MAX_DY;
             player.on_ground = false;
         }
     };

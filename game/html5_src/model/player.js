@@ -5,8 +5,6 @@ function Player(x, y){
     this.dy = 0;
     this.MAX_DX = 5;
     this.MAX_DY = 10;
-    this.ddy = 0;
-    this.MAX_DDY = 5;
     this.width = 25;
     this.height = 25;
     this.on_ground = false;
