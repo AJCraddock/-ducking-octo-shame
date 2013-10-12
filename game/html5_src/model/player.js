@@ -12,10 +12,11 @@ function Player(x, y){
     this.last_render_x = 0;
     this.last_render_y = 0;
 
-
-    this.draw = function(graphics){
+    this.clear_old = function(graphics){
         graphics.clearRect(this.last_render_x-2, this.last_render_y-2, 
             this.width+4, this.height+4);
+    }
+    this.draw = function(graphics){
         graphics.fillStyle = '#FF0000';
         graphics.fillRect(this.x, this.y, this.width, this.height);
         this.last_render_x = this.x;
