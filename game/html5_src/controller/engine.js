@@ -1,7 +1,22 @@
-function Engine(player_controller, map){
+//imports
+var head = document.getElementsByTagName('head')[0];
+
+var map_loaderjs = document.createElement('script');
+map_loaderjs.type = 'text/javascript';
+map_loaderjs.src = 'map_loader.js';
+head.appendChild(map_loaderjs);
+
+var player_controllerjs = document.createElement('script');
+player_controllerjs.type = 'text/javascript';
+player_controllerjs.src = 'player_controller.js';
+head.appendChild(player_controllerjs);
+
+function Engine(){
     var GRAVITY = 0.3;
-    this.player_controller = player_controller;
-    this.map = map;
+
+    this.map_loader = new MapLoader();
+    this.player_controller = new PlayerController();
+    this.map = this.map_loader.load_next_map();
 
     this.update = function(){
         this.player_controller.handle_input(this.map.player);

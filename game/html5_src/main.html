@@ -9,6 +9,7 @@
     <script src="model/player.js"></script>
     <script src="model/static_object.js"></script>
     <script src="controller/map_loader.js"></script>
+    <script data-main="main" src="require.js"></script>
 </head>
 <body>
     <canvas id="main_canvas" width="800" height="600" 
@@ -23,12 +24,10 @@
     top:0px; left:0px;">
     </canvas>
     <script type="text/javascript">
+        //TODO: create the map_loader, map, and controllers in the engine.
         //temporary object declarations
-        var map_loader = new MapLoader();
-        var player_controller = new PlayerController();
-        var map = map_loader.load_next_map();
-        var engine = new Engine(player_controller, map);
-
+        var engine = new Engine();
+        var map = engine.map;
         //set up the canvas.
         var main_canvas = document.getElementById('main_canvas');
         var fore_canvas = document.getElementById('fore_canvas');
@@ -45,11 +44,11 @@
         back_graphics.drawImage(map.background, 0, 0);
 
         function on_keydown(event){
-            player_controller.on_keydown(event);
+            engine.player_controller.on_keydown(event);
         }
 
         function on_keyup(event){
-            player_controller.on_keyup(event);
+            engine.player_controller.on_keyup(event);
         }
 
         function render(){
@@ -69,6 +68,7 @@
             //schedule the engine's update method
             setInterval(engine.update, 1000/60);
             //call the renderer's render method to start the animation loop
+            // engine.update();
             render();
         }
 
