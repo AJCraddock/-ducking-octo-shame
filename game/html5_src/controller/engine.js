@@ -90,6 +90,7 @@ define(
                 }
             }
         };
+        return Engine;
     }
 );
 

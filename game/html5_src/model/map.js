@@ -13,6 +13,8 @@ define(
         Map.prototype = {
             constructor: Map
         };
+
+        return Map;
     }
 );
 

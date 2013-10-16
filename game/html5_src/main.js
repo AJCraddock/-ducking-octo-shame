@@ -7,7 +7,7 @@ requirejs.config({
 
 //start main app logic here
 requirejs(
-    ['controller/Engine'],
+    ['controller/engine'],
     
     function(){
         console.log("got here");

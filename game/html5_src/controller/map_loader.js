@@ -1,6 +1,6 @@
 define(
     //dependencies
-    ['../model/map'],
+    ['model/map', 'model/player'],
 
     //module definition
     function(require){
@@ -37,6 +37,7 @@ define(
                 return this.maps[this.curr_map_index];
             }
         };
+        return MapLoader;
     }
 );
 

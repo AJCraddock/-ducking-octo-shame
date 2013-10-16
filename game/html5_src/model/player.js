@@ -33,6 +33,8 @@ define(
                 this.last_render_y = this.y;
             }
         };
+
+        return Player;
     }
 );
 

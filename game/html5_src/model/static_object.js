@@ -17,6 +17,8 @@ define(
                 graphics.fillRect(this.x, this.y, this.width, this.height);                
             }
         };
+
+        return StaticObject;
     }
 );
 
