@@ -3,12 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Bill Game</title>
-    <script src="controller/engine.js"></script>
-    <script src="controller/player_controller.js"></script>
-    <script src="model/map.js"></script>
-    <script src="model/player.js"></script>
-    <script src="model/static_object.js"></script>
-    <script src="controller/map_loader.js"></script>
+    <script data-main="main" src="require.js"></script>
 </head>
 <body>
     <canvas id="main_canvas" width="800" height="600" 
@@ -22,68 +17,5 @@
     style="padding:0px; border:0px; margin:0px; z-index:0; position:absolute;
     top:0px; left:0px;">
     </canvas>
-    <script type="text/javascript">
-        //temporary object declarations
-        var player_controller = new PlayerController();
-        var background = document.createElement("canvas");
-        background.width = 800;
-        background.height = 600;
-        var temp_graphics = background.getContext('2d');
-        temp_graphics.fillStyle = "#000000";
-        temp_graphics.fillRect(0, 0, background.width, background.height);
-        var player = new Player(80, 80);
-        var objects = new Array();
-        objects.push(new StaticObject(0, 525, 600, 10));
-        objects.push(new StaticObject(400, 425, 90, 100));
-        objects.push(new StaticObject(200, 489, 90, 10));
-
-        this.map = new Map(player, objects, background);
-        var engine = new Engine(player_controller, map);
-
-        //set up the canvas.
-        var main_canvas = document.getElementById('main_canvas');
-        var fore_canvas = document.getElementById('fore_canvas');
-        //give the main_canvas focus
-        main_canvas.setAttribute('tabindex', '0');
-        main_canvas.focus();
-        //link event handlers for game
-        main_canvas.addEventListener("keydown", on_keydown, false);
-        main_canvas.addEventListener("keyup", on_keyup, false);
-        //get graphics context for the canvas
-        var back_graphics = main_canvas.getContext('2d');
-        var graphics = fore_canvas.getContext('2d');
-        //set the main canvas background to the current map background
-        back_graphics.drawImage(map.background, 0, 0);
-
-        function on_keydown(event){
-            player_controller.on_keydown(event);
-        }
-
-        function on_keyup(event){
-            player_controller.on_keyup(event);
-        }
-
-        function render(){
-            window.requestAnimationFrame(render);
-            
-            //blank the screen
-            map.player.clear_old(graphics);
-
-            //draw the game objects
-            map.player.draw(graphics);
-            for(var i = 0; i < map.objects.length; i++){
-                map.objects[i].draw(graphics);
-            }
-        }
-
-        function main_loop(){
-            //schedule the engine's update method
-            setInterval(engine.update, 1000/60);
-            //call the renderer's render method to start the animation loop
-            render();
-        }
-
-        main_loop();
-    </script>
 </body>
 </html>
