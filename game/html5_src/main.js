@@ -49,7 +49,8 @@ requirejs(
             }
         }
 
-        //schedule the engine's update method
+        //schedule the engine's update method, have to use a wrapper function
+        //so that engine.update() does not end up in an anonymous namespace
         setInterval(function(){return engine.update();}, 1000/60);
         //call the renderer's render method to start the animation loop
         // engine.update();
