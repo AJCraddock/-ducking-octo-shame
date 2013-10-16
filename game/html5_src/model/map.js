@@ -1,16 +1,20 @@
-define(function(require){
-    //constructor
-    function Map(player, objects, background){
-        this.player = player;
-        this.objects = objects;
-        this.background = background; 
-    }
+define(
+    
+    //module definition
+    function(){
+        //constructor
+        function Map(player, objects, background){
+            this.player = player;
+            this.objects = objects;
+            this.background = background; 
+        }
 
-    //superclass definition
-    Map.prototype = {
-        constructor: Map
-    };
-});
+        //superclass definition
+        Map.prototype = {
+            constructor: Map
+        };
+    }
+);
 
 
 //OLD CODE
