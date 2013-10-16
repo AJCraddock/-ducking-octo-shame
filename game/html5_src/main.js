@@ -9,9 +9,9 @@ requirejs.config({
 requirejs(
     ['controller/engine'],
     
-    function(){
-        console.log("got here");
-        var engine = new Engine();
+    function(engine){
+        var engine = new engine();
+        console.log(engine);
         var map = engine.map;
         //set up the canvas.
         var main_canvas = document.getElementById('main_canvas');
@@ -49,14 +49,10 @@ requirejs(
             }
         }
 
-        function main_loop(){
-            //schedule the engine's update method
-            setInterval(engine.update, 1000/60);
-            //call the renderer's render method to start the animation loop
-            // engine.update();
-            render();
-        }
-
-        main_loop();
+        //schedule the engine's update method
+        setInterval(function(){return engine.update();}, 1000/60);
+        //call the renderer's render method to start the animation loop
+        // engine.update();
+        render();
     }
 );

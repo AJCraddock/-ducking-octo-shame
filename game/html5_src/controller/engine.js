@@ -3,13 +3,13 @@ define(
     ['controller/map_loader', 'controller/player_controller'],
 
     //module definition
-    function(){
+    function(map_loader, player_controller){
         //constructor
         function Engine(){
             this.GRAVITY = 0.3;
 
-            this.map_loader = new MapLoader();
-            this.player_controller = new PlayerController();
+            this.map_loader = new map_loader();
+            this.player_controller = new player_controller();
             this.map = this.map_loader.load_next_map();
         }
 
@@ -19,16 +19,16 @@ define(
 
             update: function(){
                 this.player_controller.handle_input(this.map.player);
-                gravity(this.map.player);
+                this.gravity(this.map.player);
                 this.map.player.x += this.map.player.dx;
                 this.map.player.y += this.map.player.dy;
                 this.map.player.on_ground = false;
                 //check forthis.map.player collisions
-                for(var i = 0; i < map.objects.length; i++){
-                    var o = map.objects[i];
-                    var collision = check_player_collision(o);
+                for(var i = 0; i < this.map.objects.length; i++){
+                    var o = this.map.objects[i];
+                    var collision = this.check_player_collision(o);
                     if(collision){
-                        handle_player_collision(o);
+                        this.handle_player_collision(o);
                     }
                 }
             },
@@ -64,7 +64,7 @@ define(
                 }
             },
 
-            check_player_collision: function(o){
+            check_player_collision: function(object){
                 //check if there is no overlap on x axis.
                 if (this.map.player.x+this.map.player.width < object.x || 
                     this.map.player.x > object.x+object.width){
