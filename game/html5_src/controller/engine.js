@@ -1,12 +1,12 @@
 define(
     //dependencies
-    ['map_loader', 'player_controller'],
+    ['controller/map_loader', 'controller/player_controller'],
 
     //module definition
     function(){
         //constructor
         function Engine(){
-            var GRAVITY = 0.3;
+            this.GRAVITY = 0.3;
 
             this.map_loader = new MapLoader();
             this.player_controller = new PlayerController();
@@ -34,15 +34,60 @@ define(
             },
 
             handle_player_collision: function(o){
-
+                var temp_x, temp_y, temp_dx, temp_dy;
+                var temp_on_ground;
+                //this.player is above object
+                if (this.map.player.y < o.y){
+                    temp_y = o.y-this.map.player.height;
+                    temp_on_ground = true;
+                    temp_dy = 0;
+                }else{ //this.player is below object
+                    temp_y = o.y+o.height
+                    temp_on_ground = false;
+                    temp_dy = 0;
+                }
+                if (this.map.player.x < o.x){
+                    temp_x = o.x-this.map.player.width;
+                    temp_dx = 0;
+                }else{
+                    temp_x = o.x+o.width;
+                    temp_dx = 0;
+                }
+                //check which overlap is greater
+                if(Math.abs(temp_x-this.map.player.x) < Math.abs(temp_y-this.map.player.y)){
+                    this.map.player.x = temp_x;
+                    this.map.player.dx = temp_dx;
+                }else{
+                    this.map.player.y = temp_y;
+                    this.map.player.on_ground = temp_on_ground;
+                    this.map.player.dy = temp_dy;
+                }
             },
 
             check_player_collision: function(o){
-
+                //check if there is no overlap on x axis.
+                if (this.map.player.x+this.map.player.width < object.x || 
+                    this.map.player.x > object.x+object.width){
+                    return false;
+                }
+                //check if there is no overlap on y axis.
+                else if(this.map.player.y+this.map.player.height < object.y || 
+                    this.map.player.y > object.y+object.height){
+                    return false;
+                }
+                //if both checks fail, both axes overlap and there is a collision.
+                else{
+                    return true;
+                }
             },
 
             gravity: function(object){
-                
+                if(!object.on_ground){
+                    object.dy += this.GRAVITY;
+                    if (object.dy > object.MAX_DY) object.dy = object.MAX_DY;
+                }else{
+                    object.dy = 0;
+                }
             }
         };
     }

@@ -7,9 +7,10 @@ requirejs.config({
 
 //start main app logic here
 requirejs(
-    ['controller/engine'],
+    ['controller/Engine'],
     
     function(){
+        console.log("got here");
         var engine = new Engine();
         var map = engine.map;
         //set up the canvas.
