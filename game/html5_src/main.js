@@ -12,7 +12,7 @@ requirejs(
     function(engine){
         var engine = new engine();
         var map = engine.map;
-        
+
         //set up the canvas.
         var main_canvas = document.getElementById('main_canvas');
         var fore_canvas = document.getElementById('fore_canvas');
@@ -60,7 +60,6 @@ requirejs(
         //so that engine.update() does not end up in an anonymous namespace
         setInterval(function(){return engine.update();}, 1000/60);
         //call the renderer's render method to start the animation loop
-        // engine.update();
         render();
     }
 );
