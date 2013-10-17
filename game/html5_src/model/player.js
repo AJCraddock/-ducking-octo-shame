@@ -26,11 +26,16 @@ define(
                 this.width+4, this.height+4);
             },
 
-            draw: function(graphics){
+            draw: function(graphics, canvas){
                 graphics.fillStyle = '#FF0000';
-                graphics.fillRect(this.x, this.y, this.width, this.height);
-                this.last_render_x = this.x;
+                var player_draw_x = (canvas.width/2)-(this.width/2);
+                graphics.fillRect(player_draw_x, this.y, this.width, this.height);
+                this.last_render_x = player_draw_x;
                 this.last_render_y = this.y;
+
+                // graphics.fillRect(this.x, this.y, this.width, this.height);
+                // this.last_render_x = this.x;
+                // this.last_render_y = this.y;
             }
         };
 

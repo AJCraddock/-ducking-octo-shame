@@ -38,14 +38,21 @@ requirejs(
 
         function render(){
             window.requestAnimationFrame(render);
-            
+            var player_center_x = map.player.x+(map.player.width/2)
+            var screen_x = player_center_x-(fore_canvas.width/2);
+            // var screen_y;
+
             //blank the screen
             map.player.clear_old(graphics);
+            for(var i = 0; i < map.objects.length; i++){
+                map.objects[i].clear_old(graphics);
+            }
 
             //draw the game objects
-            map.player.draw(graphics);
+            map.player.draw(graphics, volatile_canvas);
+
             for(var i = 0; i < map.objects.length; i++){
-                map.objects[i].draw(graphics);
+                map.objects[i].draw(graphics, screen_x);
             }
         }
 

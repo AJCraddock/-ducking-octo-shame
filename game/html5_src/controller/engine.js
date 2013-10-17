@@ -6,7 +6,7 @@ define(
     function(map_loader, player_controller){
         //constructor
         function Engine(){
-            this.GRAVITY = 0.3;
+            this.GRAVITY = 0.4;
 
             this.map_loader = new map_loader();
             this.player_controller = new player_controller();

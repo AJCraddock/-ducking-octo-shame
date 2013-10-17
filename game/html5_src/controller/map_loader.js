@@ -23,6 +23,7 @@ define(
             objects.push(new static_object(0, 525, 600, 10));
             objects.push(new static_object(400, 425, 90, 100));
             objects.push(new static_object(200, 489, 90, 10));
+            objects.push(new static_object(700, 525, 600, 10));
 
             this.map01 = new map(temp_player, objects, background);
             this.maps.push(this.map01);
