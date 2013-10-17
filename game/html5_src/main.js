@@ -11,8 +11,8 @@ requirejs(
     
     function(engine){
         var engine = new engine();
-        console.log(engine);
         var map = engine.map;
+        
         //set up the canvas.
         var main_canvas = document.getElementById('main_canvas');
         var fore_canvas = document.getElementById('fore_canvas');
