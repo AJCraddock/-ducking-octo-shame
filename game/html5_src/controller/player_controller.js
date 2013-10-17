@@ -8,28 +8,32 @@ define(
             this.keys_down = {A:false, D:false, W:false, S:false, Space:false};            
         }
 
+        var A = 65;
+        var D = 68;
+        var SPACE = 32;
+
         //superclass definition
         PlayerController.prototype = {
             constructor: PlayerController,
 
             on_keydown: function(event){
                 var key = event.keyCode;
-                if (key == KeyboardEvent.DOM_VK_A){
+                if (key == A){
                     this.keys_down.A = true;
-                }else if(key == KeyboardEvent.DOM_VK_D){
+                }else if(key == D){
                     this.keys_down.D = true;
-                }else if(key == KeyboardEvent.DOM_VK_SPACE){
+                }else if(key == SPACE){
                     this.keys_down.Space = true;
                 }
             },
 
             on_keyup: function(event){
                 var key = event.keyCode;
-                if (key == KeyboardEvent.DOM_VK_A){
+                if (key == A){
                     this.keys_down.A = false;
-                }else if(key == KeyboardEvent.DOM_VK_D){
+                }else if(key == D){
                     this.keys_down.D = false;
-                }else if(key == KeyboardEvent.DOM_VK_SPACE){
+                }else if(key == SPACE){
                     this.keys_down.Space = false;
                 }
             },

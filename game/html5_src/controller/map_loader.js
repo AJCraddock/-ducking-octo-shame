@@ -13,7 +13,12 @@ define(
 
             //temporary map string
             var map_data_str =
-            "Player: 80 80ENDObjects: 0 525 600 10 400 425 90 100 200 489 90 10 700 525 600 10ENDBackground: #000000ENDMAP";
+            "Player: 80 80" +
+            "END"+
+            "Objects: 0 525 600 10 400 425 90 100 200 489 90 10 700 525 600 10" + 
+            "END" + 
+            "Background: #000000"+
+            "ENDMAP";
 
             MapLoader.create_map(map_data_str, this.maps);
         }
