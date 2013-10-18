@@ -25,10 +25,10 @@ define(
             "Background: #000000"+
             "ENDMAP";
 
-            MapLoader.create_map(map_data_str, this.maps);
+            MapLoader.create_maps(map_data_str, this.maps);
         }
 
-        MapLoader.create_map = function(map_data_str, maps){
+        MapLoader.create_maps = function(map_data_str, maps){
             
             map_data_arr = map_data_str.split("ENDMAP");
 
