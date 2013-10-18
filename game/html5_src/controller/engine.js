@@ -1,15 +1,15 @@
 define(
     //dependencies
-    ['controller/map_loader', 'controller/player_controller'],
+    ['controller/MapLoader', 'controller/PlayerController'],
 
     //module definition
-    function(map_loader, player_controller){
+    function(MapLoader, PlayerController){
         //constructor
         function Engine(){
             this.GRAVITY = 0.4;
 
-            this.map_loader = new map_loader();
-            this.player_controller = new player_controller();
+            this.map_loader = new MapLoader();
+            this.player_controller = new PlayerController();
             this.map = this.map_loader.load_next_map();
         }
 

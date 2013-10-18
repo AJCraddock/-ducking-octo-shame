@@ -1,9 +1,9 @@
 define(
     //dependencies
-    ['model/map', 'model/player', 'model/static_object'],
+    ['model/Map', 'model/Player', 'model/StaticObject'],
 
     //module definition
-    function(map, player, static_object){
+    function(Map, Player, StaticObject){
 
         //constructor
         function MapLoader(){
@@ -30,7 +30,7 @@ define(
             for(var i = 0; i < map_data_arr.length; i++){
                 map_data = map_data_arr[i].split("END");
                 
-                var map_player;
+                var player;
                 var objects = new Array();
                 var background = document.createElement("canvas");
 
@@ -41,7 +41,7 @@ define(
                     if(data[0] == "Player:"){
                         var x = parseInt(data[1]);
                         var y = parseInt(data[2]);
-                        map_player = new player(x, y);
+                        player = new Player(x, y);
                     }
 
                     //parse and create static objects
@@ -55,7 +55,7 @@ define(
                             k++;
                             var height = parseInt(data[k]);
                             k++;
-                            objects.push(new static_object(x, y, width, height));
+                            objects.push(new StaticObject(x, y, width, height));
                         }
                     }
 
@@ -68,7 +68,7 @@ define(
                         temp_graphics.fillRect(0, 0, background.width, background.height);
                     }
 
-                    maps.push(new map(map_player, objects, background));
+                    maps.push(new Map(player, objects, background));
                 }
             }
         };
