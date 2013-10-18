@@ -19,9 +19,15 @@ define(
 
             update: function(){
                 this.player_controller.handle_input(this.map.player);
+                
+                // move objects
                 this.gravity(this.map.player);
                 this.map.player.x += this.map.player.dx;
                 this.map.player.y += this.map.player.dy;
+
+                // update object screen positions in map
+                this.map.update_screens();
+
                 this.map.player.on_ground = false;
                 //check forthis.map.player collisions
                 for(var i = 0; i < this.map.objects.length; i++){
