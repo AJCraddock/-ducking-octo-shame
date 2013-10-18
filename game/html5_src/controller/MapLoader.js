@@ -20,9 +20,12 @@ define(
             "0 525 600 10 " + 
             "400 425 90 100 " + 
             "200 489 90 10 " + 
-            "700 525 600 10" + 
+            "700 525 600 10 " +
+            "1400 525 600 10 " +
+            "2100 525 600 10 " +
+            "2800 525 600 10" +
             "END" + 
-            "Background: #000000"+
+            "Background: 000000"+
             "ENDMAP";
 
             MapLoader.create_maps(map_data_str, this.maps);
@@ -40,17 +43,18 @@ define(
                 var background = document.createElement("canvas");
 
                 for(var j=0; j < map_data.length; j++){
-                    data = map_data[j].split(" ");
+                    var regex = /\W+/;
+                    data = map_data[j].split(regex);
                     
                     //parse and create player object
-                    if(data[0] == "Player:"){
+                    if(data[0] == "Player"){
                         var x = parseInt(data[1]);
                         var y = parseInt(data[2]);
                         player = new Player(x, y);
                     }
 
                     //parse and create static objects
-                    if(data[0] == "Objects:"){
+                    if(data[0] == "Objects"){
                         for(var k = 1; k < data.length;){
                             var x = parseInt(data[k]);
                             k++;
@@ -65,11 +69,11 @@ define(
                     }
 
                     //parse and create background
-                    if(data[0] == "Background:"){
+                    if(data[0] == "Background"){
                         background.width = 800;
                         background.height = 600;
                         var temp_graphics = background.getContext('2d');
-                        temp_graphics.fillStyle = data[1];
+                        temp_graphics.fillStyle = "#" + data[1];
                         temp_graphics.fillRect(0, 0, background.width, background.height);
                     }
 
