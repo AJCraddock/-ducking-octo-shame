@@ -29,9 +29,12 @@ define(
                 this.map.update_screens();
 
                 this.map.player.on_ground = false;
-                //check forthis.map.player collisions
-                for(var i = 0; i < this.map.objects.length; i++){
-                    var o = this.map.objects[i];
+
+                // get objects that are close to player
+                var nearby_objects = this.map.get_nearby_objects();
+                // check for player collisions
+                for(var i = 0; i < nearby_objects.length; i++){
+                    var o = nearby_objects[i];
                     var collision = this.check_player_collision(o);
                     if(collision){
                         this.handle_player_collision(o);
