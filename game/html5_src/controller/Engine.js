@@ -8,6 +8,8 @@ define(
         function Engine(){
             this.GRAVITY = 0.4;
 
+            this.victory = false;
+
             this.map_loader = new MapLoader();
             this.player_controller = new PlayerController();
             this.map = this.map_loader.load_next_map();

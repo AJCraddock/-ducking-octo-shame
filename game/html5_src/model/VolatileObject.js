@@ -13,7 +13,7 @@ define(
             constructor: VolatileObject,
 
             //handle collisions in a special way
-            on_collide: function(obj){
+            on_collide: function(engine){
             },
 
             clear_old: function(graphics){
@@ -31,6 +31,6 @@ define(
             }
         };
 
-        return StaticObject;
+        return VolatileObject;
     }
 );
