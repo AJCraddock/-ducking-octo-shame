@@ -1,8 +1,9 @@
 define(
+    //dependencies
+    ['model/VolatileObject'],
+    
     //module definition
     function(){
-        //dependencies
-        ['model/VolatileObject'],
         //constructor
         function GoalPlatform(x, y){
             this.x = x;
