@@ -15,7 +15,7 @@ define(
             var map_data_str =
             "Player: 80 80" +
             "END"+
-            "Objects: " + 
+            "StaticObjects: " + 
             "0 0 30 600 " + 
             "0 525 600 10 " + 
             "400 425 90 100 " + 
@@ -24,7 +24,9 @@ define(
             "1400 525 600 10 " +
             "2100 525 600 10 " +
             "2800 525 600 10" +
-            "END" + 
+            "END" +
+            "VolatileObjects: " +
+            "END" +
             "Background: 000000"+
             "ENDMAP";
 
@@ -54,7 +56,7 @@ define(
                     }
 
                     //parse and create static objects
-                    if(data[0] == "Objects"){
+                    if(data[0] == "StaticObjects"){
                         for(var k = 1; k < data.length;){
                             var x = parseInt(data[k]);
                             k++;
