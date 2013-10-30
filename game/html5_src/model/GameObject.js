@@ -5,6 +5,7 @@ define(
         function GameObject(x, y, width, height){
             this.x = x;
             this.y = y;
+
             this.width = width;
             this.height = height;
 
@@ -19,6 +20,9 @@ define(
 
         GameObject.prototype = {
             constructor: GameObject,
+
+            update: function(){
+            },
 
             //handle collisions in a special way
             handle_player_collision: function(player){

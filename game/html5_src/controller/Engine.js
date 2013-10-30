@@ -22,18 +22,25 @@ define(
             update: function(){
                 this.player_controller.handle_input(this.map.player);
                 
-                // move objects
+                // update player
                 this.gravity(this.map.player);
-                this.map.player.x += this.map.player.dx;
-                this.map.player.y += this.map.player.dy;
+                this.map.player.update();
 
                 // update object screen positions in map
+                // may need to change this to accomodate moving objects
                 this.map.update_screens();
 
                 this.map.player.on_ground = false;
 
                 // get objects that are close to player
                 var nearby_objects = this.map.get_nearby_objects();
+
+                //update game objects
+                for(var i = 0; i < nearby_objects.length; i++){
+                    var o = nearby_objects[i];
+                    o.update();
+                }
+
                 // check for player collisions
                 for(var i = 0; i < nearby_objects.length; i++){
                     var o = nearby_objects[i];

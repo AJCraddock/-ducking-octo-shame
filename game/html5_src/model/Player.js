@@ -12,6 +12,9 @@ define(
             this.width = 25;
             this.height = 25;
             this.on_ground = false;
+
+            this.dead = false;
+            this.victorious = false;
             
             this.last_render_x = 0;
             this.last_render_y = 0;
@@ -19,6 +22,11 @@ define(
 
         Player.prototype = {
             constructor: Player,
+
+            update: function(){
+                this.x += this.dx;
+                this.y += this.dy;
+            },
 
             clear_old: function(graphics){
                 graphics.clearRect(this.last_render_x-2, this.last_render_y-2, 
