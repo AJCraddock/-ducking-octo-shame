@@ -3,9 +3,9 @@ define(
     //module definition
     function(){
         //constructor
-        function Map(player, objects, background){
+        function Map(player, game_objects, background){
             this.player = player;
-            this.objects = objects;
+            this.objects = game_objects;
             this.background = background;
 
             // array to separate objects based on location

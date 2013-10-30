@@ -17,7 +17,6 @@ define(
             this.last_render_y = 0;
         }
 
-        //superclass definition or something, I'm not sure
         Player.prototype = {
             constructor: Player,
 

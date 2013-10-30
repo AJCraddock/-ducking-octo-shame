@@ -39,39 +39,8 @@ define(
                     var o = nearby_objects[i];
                     var collision = this.check_player_collision(o);
                     if(collision){
-                        this.handle_player_collision(o);
+                        o.handle_player_collision(this.map.player);
                     }
-                }
-            },
-
-            handle_player_collision: function(o){
-                var temp_x, temp_y, temp_dx, temp_dy;
-                var temp_on_ground;
-                //this.player is above object
-                if (this.map.player.y < o.y){
-                    temp_y = o.y-this.map.player.height;
-                    temp_on_ground = true;
-                    temp_dy = 0;
-                }else{ //this.player is below object
-                    temp_y = o.y+o.height
-                    temp_on_ground = false;
-                    temp_dy = 0;
-                }
-                if (this.map.player.x < o.x){
-                    temp_x = o.x-this.map.player.width;
-                    temp_dx = 0;
-                }else{
-                    temp_x = o.x+o.width;
-                    temp_dx = 0;
-                }
-                //check which overlap is greater
-                if(Math.abs(temp_x-this.map.player.x) < Math.abs(temp_y-this.map.player.y)){
-                    this.map.player.x = temp_x;
-                    this.map.player.dx = temp_dx;
-                }else{
-                    this.map.player.y = temp_y;
-                    this.map.player.on_ground = temp_on_ground;
-                    this.map.player.dy = temp_dy;
                 }
             },
 
