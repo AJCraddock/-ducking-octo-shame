@@ -2,17 +2,17 @@ define(
     //dependencies
     ['controller/MapLoader', 
     'controller/PlayerController', 
-    'controller/VictoryController'],
+    'controller/PressAnythingController'],
 
     //module definition
-    function(MapLoader, PlayerController, VictoryController){
+    function(MapLoader, PlayerController, PressAnythingController){
         //constructor
         function Engine(){
             this.GRAVITY = 0.4;
 
             this.map_loader = new MapLoader();
             this.player_controller = new PlayerController();
-            this.victory_controller = new VictoryController();
+            this.press_anything_controller = new PressAnythingController();
             
             this.current_controller = this.player_controller;
 
@@ -78,12 +78,13 @@ define(
 
                 if (player.dead){
                     this.mode = "game_over";
+                    this.player_controller.reset();
                 }
 
                 if(player.victory){
                     this.mode = "victory";
                     this.player_controller.reset();
-                    this.current_controller = this.victory_controller;
+                    this.current_controller = this.press_anything_controller;
                 }
             },
 
@@ -92,12 +93,12 @@ define(
             },
 
             victory_mode: function(){
-                var ready = this.victory_controller.handle_input();
+                var ready = this.press_anything_controller.handle_input();
                 if(ready){
                     //prepare the game for the next map
                     this.map = this.map_loader.load_next_map();
                     this.mode = "game_running";
-                    this.victory_controller.reset();
+                    this.press_anything_controller.reset();
                     this.current_controller = this.player_controller;
                 }
             },

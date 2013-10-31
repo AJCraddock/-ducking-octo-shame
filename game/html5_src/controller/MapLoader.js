@@ -9,7 +9,7 @@ define(
         function MapLoader(){
             //fields
             this.curr_map_index = 0;
-            
+
             //temporary map string
             var map_data_str =
             "Player: 80 80" +
@@ -30,13 +30,17 @@ define(
             "Player: 80 80" +
             "END"+
             "GameObjects: " +
-            "GoalPlatform 3500 525 " + 
+            "GoalPlatform 3500 100 " +
+            "3400 200 30 10 " +
+            "3320 300 30 10 " +
+            "3260 400 30 10 " +
             "0 0 30 600 " + 
             "0 525 600 10 " + 
             "400 425 90 100 " + 
             "200 489 90 10 " + 
             "700 525 600 10 " +
             "1400 525 600 10 " +
+            "1450 525 30 100 " +
             "2100 525 600 10 " +
             "2800 525 600 10" +
             "END" +
@@ -108,9 +112,9 @@ define(
             constructor: MapLoader,
 
             load_next_map: function(){
+                var map = MapLoader.create_map(this.maps[this.curr_map_index]);
                 this.curr_map_index = (this.curr_map_index+1)%this.maps.length;
-                console.log(this.maps);
-                return MapLoader.create_map(this.maps[this.curr_map_index]);
+                return map;
             }
         };
         return MapLoader;
