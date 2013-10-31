@@ -112,8 +112,8 @@ define(
             constructor: MapLoader,
 
             load_next_map: function(){
-                var map = MapLoader.create_map(this.maps[this.curr_map_index]);
                 this.curr_map_index = (this.curr_map_index+1)%this.maps.length;
+                var map = MapLoader.create_map(this.maps[this.curr_map_index]);
                 return map;
             },
 

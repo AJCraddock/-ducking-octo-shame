@@ -12,7 +12,7 @@ define(
         PressAnythingController.prototype.constructor = PressAnythingController;
 
         PressAnythingController.prototype.handle_input = function(){
-            if(this.keys_down.A || this.keys_down.D || this.keys_down.SPACE){
+            if(this.keys_down.A || this.keys_down.D || this.keys_down.Space){
                 return true;
             }
             return false;

@@ -16,7 +16,7 @@ define(
             
             this.current_controller = this.player_controller;
 
-            this.map = this.map_loader.load_next_map();
+            this.map = this.map_loader.reset_curr_map();
 
             this.mode = "game_running";
         }
