@@ -82,6 +82,7 @@ define(
 
                 if(player.victory){
                     this.mode = "victory";
+                    this.player_controller.reset();
                     this.current_controller = this.victory_controller;
                 }
             },
@@ -96,6 +97,7 @@ define(
                     //prepare the game for the next map
                     this.map = this.map_loader.load_next_map();
                     this.mode = "game_running";
+                    this.victory_controller.reset();
                     this.current_controller = this.player_controller;
                 }
             },

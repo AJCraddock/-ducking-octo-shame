@@ -37,6 +37,14 @@ define(
             },
 
             handle_input: function(){
+            },
+
+            reset: function(){
+                this.keys_down.A = false;
+                this.keys_down.S = false;
+                this.keys_down.D = false;
+                this.keys_down.W = false;
+                this.keys_down.Space = false;
             }
         };
 
