@@ -15,7 +15,7 @@ define(
             this.image.width = this.width;
             this.image.height = this.height;
             var temp_graphics = this.image.getContext('2d');
-            temp_graphics.fillStyle = "#0000FF";
+            temp_graphics.fillStyle = "#00FF00";
             temp_graphics.fillRect(0, 0, this.width, this.height);
         }
 
@@ -24,7 +24,7 @@ define(
         GoalPlatform.prototype.constructor = GoalPlatform;
 
         GoalPlatform.prototype.handle_player_collision = function(player){
-            //GameObject.prototype.handle_player_collision(player);
+            GameObject.prototype.handle_player_collision.call(this, player);
             player.victory = true;
         };
 

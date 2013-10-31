@@ -15,7 +15,8 @@ define(
             var map_data_str =
             "Player: 80 80" +
             "END"+
-            "GameObjects: " + 
+            "GameObjects: " +
+            "GoalPlatform 3500 525 " + 
             "0 0 30 600 " + 
             "0 525 600 10 " + 
             "400 425 90 100 " + 
@@ -56,6 +57,15 @@ define(
                     //parse and create static objects
                     if(data[0] == "GameObjects"){
                         for(var k = 1; k < data.length;){
+                            if(data[k] == "GoalPlatform"){
+                                k++;
+                                var x = parseInt(data[k]);
+                                k++;
+                                var y = parseInt(data[k]);
+                                k++;
+                                objects.push(new GoalPlatform(x, y));
+                                continue;
+                            }
                             var x = parseInt(data[k]);
                             k++;
                             var y = parseInt(data[k]);
