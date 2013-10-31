@@ -19,7 +19,7 @@ define(
             temp_graphics.fillRect(0, 0, this.width, this.height);
         }
 
-        GoalPlatform.prototype = GameObject.prototype;
+        GoalPlatform.prototype = new GameObject();
 
         GoalPlatform.prototype.constructor = GoalPlatform;
 
