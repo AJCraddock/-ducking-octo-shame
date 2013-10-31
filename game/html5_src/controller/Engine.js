@@ -1,17 +1,21 @@
 define(
     //dependencies
-    ['controller/MapLoader', 'controller/PlayerController'],
+    ['controller/MapLoader', 
+    'controller/PlayerController', 
+    'controller/VictoryController'],
 
     //module definition
-    function(MapLoader, PlayerController){
+    function(MapLoader, PlayerController, VictoryController){
         //constructor
         function Engine(){
             this.GRAVITY = 0.4;
 
-            this.victory = false;
-
             this.map_loader = new MapLoader();
             this.player_controller = new PlayerController();
+            this.victory_controller = new VictoryController();
+            
+            this.current_controller = this.player_controller;
+
             this.map = this.map_loader.load_next_map();
 
             this.mode = "game_running";
@@ -78,6 +82,7 @@ define(
 
                 if(player.victory){
                     this.mode = "victory";
+                    this.current_controller = this.victory_controller;
                 }
             },
 
@@ -86,7 +91,13 @@ define(
             },
 
             victory_mode: function(){
-
+                var ready = this.victory_controller.handle_input();
+                if(ready){
+                    //prepare the game for the next map
+                    this.map = this.map_loader.load_next_map();
+                    this.mode = "game_running";
+                    this.current_controller = this.player_controller;
+                }
             },
 
             check_player_collision: function(object){

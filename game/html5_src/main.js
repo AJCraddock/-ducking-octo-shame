@@ -11,7 +11,7 @@ requirejs(
     
     function(Engine){
         var engine = new Engine();
-        var map = engine.map;
+        var curr_map = engine.map;
 
         //set up the canvas.
         var main_canvas = document.getElementById('main_canvas');
@@ -31,23 +31,37 @@ requirejs(
         //get graphics context for the canvas
         var back_graphics = main_canvas.getContext('2d');
         var graphics = fore_canvas.getContext('2d');
+        var v_graphics = volatile_canvas.getContext('2d');
         //set the main canvas background to the current map background
-        back_graphics.drawImage(map.background, 0, 0);
+        back_graphics.drawImage(engine.map.background, 0, 0);
 
         function on_focus(event){
             main_canvas.focus();
         }
 
         function on_keydown(event){
-            engine.player_controller.on_keydown(event);
+            engine.current_controller.on_keydown(event);
         }
 
         function on_keyup(event){
-            engine.player_controller.on_keyup(event);
+            engine.current_controller.on_keyup(event);
         }
 
         function render(){
             window.requestAnimationFrame(render);
+            var map = engine.map;
+            
+            //if the map has changed, reset the canvases
+            if (map != curr_map){
+                back_graphics.clearRect(0, 0, main_canvas.width, main_canvas.height);
+                back_graphics.drawImage(map.background, 0, 0);
+
+                graphics.clearRect(0, 0, fore_canvas.width, fore_canvas.height);
+
+                v_graphics.clearRect(0, 0, volatile_canvas.width, volatile_canvas.height);
+                curr_map = map;
+            }
+
             var player_center_x = map.player.x+(map.player.width/2)
             var screen_x = player_center_x-(fore_canvas.width/2);
             // var screen_y;
@@ -59,7 +73,7 @@ requirejs(
             }
 
             //draw the game objects
-            map.player.draw(graphics, volatile_canvas);
+            map.player.draw(graphics, fore_canvas);
 
             for(var i = 0; i < map.objects.length; i++){
                 map.objects[i].draw(graphics, screen_x);

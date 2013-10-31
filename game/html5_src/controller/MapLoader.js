@@ -27,7 +27,21 @@ define(
             "2800 525 600 10" +
             "END" +
             "Background: 000000"+
-            "ENDMAP";
+            "ENDMAP" +
+            "Player: 80 80" +
+            "END"+
+            "GameObjects: " +
+            "GoalPlatform 3500 525 " + 
+            "0 0 30 600 " + 
+            "0 525 600 10 " + 
+            "400 425 90 100 " + 
+            "200 489 90 10 " + 
+            "700 525 600 10 " +
+            "1400 525 600 10 " +
+            "2100 525 600 10 " +
+            "2800 525 600 10" +
+            "END" +
+            "Background: 000000";
 
             MapLoader.create_maps(map_data_str, this.maps);
         }
@@ -86,9 +100,8 @@ define(
                         temp_graphics.fillStyle = "#" + data[1];
                         temp_graphics.fillRect(0, 0, background.width, background.height);
                     }
-
-                    maps.push(new Map(player, objects, background));
                 }
+                maps.push(new Map(player, objects, background));
             }
         };
 
