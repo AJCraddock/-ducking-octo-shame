@@ -24,7 +24,6 @@ define(
             // add objects to a screen based on their position
             for(var i = 0; i < this.objects.length; i++){
                 var object = this.objects[i];
-                console.log(object);
                 var screen_index = Math.floor(object.x/800);
                 this.screens[screen_index].push(object);
             }

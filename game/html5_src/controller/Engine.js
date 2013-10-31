@@ -24,23 +24,30 @@ define(
             update: function(){
                 switch(this.mode){
                     case "game_running":
-                        this.game_update();
+                        this.game_running_mode();
+                        break;
+                    case "game_over":
+                        this.game_over_mode();
+                        break;
+                    case "victory":
+                        this.victory_mode();
                         break;
                 }
             },
 
-            game_update: function(){
+            game_running_mode: function(){
+                var player = this.map.player;
                 this.player_controller.handle_input(this.map.player);
                 
                 // update player
-                this.gravity(this.map.player);
-                this.map.player.update();
+                this.gravity(player);
+                player.update();
 
                 // update object screen positions in map
                 // may need to change this to accomodate moving objects
                 this.map.update_screens();
 
-                this.map.player.on_ground = false;
+                player.on_ground = false;
 
                 // get objects that are close to player
                 var nearby_objects = this.map.get_nearby_objects();
@@ -56,18 +63,30 @@ define(
                     var o = nearby_objects[i];
                     var collision = this.check_player_collision(o);
                     if(collision){
-                        o.handle_player_collision(this.map.player);
+                        o.handle_player_collision(player);
                     }
                 }
 
                 //check for player victory and death
-                if (this.map.player.y > this.map.death_height){
-                    this.map.player.death = true;
+                if (player.y > this.map.death_height){
+                    player.dead = true;
                 }
 
-                if (this.map.player.death){
-
+                if (player.dead){
+                    this.mode = "game_over";
                 }
+
+                if(player.victory){
+                    this.mode = "victory";
+                }
+            },
+
+            game_over_mode: function(){
+
+            },
+
+            victory_mode: function(){
+
             },
 
             check_player_collision: function(object){
