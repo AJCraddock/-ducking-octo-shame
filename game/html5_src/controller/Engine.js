@@ -13,6 +13,8 @@ define(
             this.map_loader = new MapLoader();
             this.player_controller = new PlayerController();
             this.map = this.map_loader.load_next_map();
+
+            this.mode = "game_running";
         }
 
         //superclass constructor
@@ -20,6 +22,14 @@ define(
             constructor: Engine,
 
             update: function(){
+                switch(this.mode){
+                    case "game_running":
+                        this.game_update();
+                        break;
+                }
+            },
+
+            game_update: function(){
                 this.player_controller.handle_input(this.map.player);
                 
                 // update player
@@ -48,6 +58,15 @@ define(
                     if(collision){
                         o.handle_player_collision(this.map.player);
                     }
+                }
+
+                //check for player victory and death
+                if (this.map.player.y > this.map.death_height){
+                    this.map.player.death = true;
+                }
+
+                if (this.map.player.death){
+
                 }
             },
 

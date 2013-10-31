@@ -1,9 +1,9 @@
 define(
     //dependencies
-    ['model/Map', 'model/Player', 'model/GameObject'],
+    ['model/Map', 'model/Player', 'model/GameObject', 'model/GoalPlatform'],
 
     //module definition
-    function(Map, Player, GameObject){
+    function(Map, Player, GameObject, GoalPlatform){
 
         //constructor
         function MapLoader(){

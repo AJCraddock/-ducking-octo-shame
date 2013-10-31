@@ -4,6 +4,8 @@ define(
     function(){
         //constructor
         function Map(player, game_objects, background){
+            this.death_height = 750;
+
             this.player = player;
             this.objects = game_objects;
             this.background = background;
@@ -21,6 +23,7 @@ define(
 
             // add objects to a screen based on their position
             for(var i = 0; i < this.objects.length; i++){
+                console.log(object);
                 var object = this.objects[i];
                 var screen_index = Math.floor(object.x/800);
                 this.screens[screen_index].push(object);
