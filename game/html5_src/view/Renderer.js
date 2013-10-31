@@ -77,12 +77,20 @@ define(
 
             game_over_render: function(){
                 this.v_graphics.fillStyle = "#0000FF";
-                this.v_graphics.font = "100px Georgia";
-                this.v_graphics.fillText("YOU DIED", 50, 100);
+                this.v_graphics.font = "100px Colibri";
+                this.v_graphics.textAlign = "center";
+                this.v_graphics.fillText("YOU DIED", this.v_canvas.width/2, this.v_canvas.height/2);
+                this.v_graphics.font = "30px Colibri";
+                this.v_graphics.fillText("Press [Space] to continue...", this.v_canvas.width/2, (this.v_canvas.height/2)+30);
             },
 
             victory_render: function(){
-
+                this.v_graphics.fillStyle = "#0000FF";
+                this.v_graphics.font = "80px Colibri";
+                this.v_graphics.textAlign = "center";
+                this.v_graphics.fillText("LEVEL COMPLETE!", this.v_canvas.width/2, this.v_canvas.height/2);
+                this.v_graphics.font = "30px Colibri";
+                this.v_graphics.fillText("Press [Space] to continue...", this.v_canvas.width/2, (this.v_canvas.height/2)+30);
             }
 
         };
