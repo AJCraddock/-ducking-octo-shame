@@ -41,7 +41,7 @@ define(
 
             game_running_mode: function(){
                 var player = this.map.player;
-                this.player_controller.handle_input(this.map.player);
+                this.current_controller.handle_input(this.map.player);
                 
                 // update player
                 this.gravity(player);
@@ -79,6 +79,7 @@ define(
                 if (player.dead){
                     this.mode = "game_over";
                     this.player_controller.reset();
+                    this.current_controller = this.press_anything_controller;
                 }
 
                 if(player.victory){
@@ -89,14 +90,25 @@ define(
             },
 
             game_over_mode: function(){
-
+                var ready = this.current_controller.handle_input();
+                if(ready){
+                    // player died, so return map to starting state
+                    this.map = this.map_loader.reset_curr_map();
+                    
+                    // prepare the game for game_running mode
+                    this.mode = "game_running";
+                    this.press_anything_controller.reset();
+                    this.current_controller = this.player_controller;
+                }
             },
 
             victory_mode: function(){
-                var ready = this.press_anything_controller.handle_input();
+                var ready = this.current_controller.handle_input();
                 if(ready){
-                    //prepare the game for the next map
+                    // prepare the game for the next map
                     this.map = this.map_loader.load_next_map();
+
+                    // prepare the game for game_running mode
                     this.mode = "game_running";
                     this.press_anything_controller.reset();
                     this.current_controller = this.player_controller;

@@ -29,7 +29,6 @@ define(
             }
         }
 
-        //superclass definition
         Map.prototype = {
             constructor: Map,
 
