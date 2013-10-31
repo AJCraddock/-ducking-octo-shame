@@ -13,11 +13,15 @@ define(
 
         PlayerController.prototype.handle_input = function(player){
             if (this.keys_down.A){
-                player.dx = 0-player.MAX_DX;
+                player.dx = Math.max(player.dx-player.ddx, 0-player.MAX_DX);
             }else if(this.keys_down.D){
-                player.dx = player.MAX_DX;
+                player.dx = Math.min(player.dx+player.ddx, player.MAX_DX);
             }else{
-                player.dx = 0;
+                if(player.dx > 0){
+                    player.dx = Math.max(player.dx-player.ddx, 0);
+                }else{
+                    player.dx = Math.min(player.dx+player.ddx, 0);
+                }
             }
             if (this.keys_down.Space){
                 this.jump(player);
