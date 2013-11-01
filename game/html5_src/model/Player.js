@@ -19,6 +19,8 @@ define(
             
             this.last_render_x = 0;
             this.last_render_y = 0;
+
+            this.grounding_object = null;
         }
 
         Player.prototype = {

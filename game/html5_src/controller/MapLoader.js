@@ -20,10 +20,10 @@ define(
             "GameObject 0 0 30 600 " + 
             "Mechanism 31 525 300 100 2 1 31 200 " + 
             "Mechanism 400 225 90 100 2 1 400 525 " + 
-            "Mechanism 700 525 400 100 2 1 700 100 " +
+            "Mechanism 700 525 600 100 2 1 700 100 " +
             "Mechanism 1400 100 600 10 2 1 1400 525 " +
             "GameObject 2100 525 600 10 " +
-            "GameObject 2800 525 600 10" +
+            "Mechanism 2800 525 100 10 2 1 3300 525" +
             "END" +
             "Background: 000000"+
             "ENDMAP" +

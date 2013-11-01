@@ -51,8 +51,6 @@ define(
                 // may need to change this to accomodate moving objects
                 this.map.update_screens();
 
-                player.on_ground = false;
-
                 // get objects that are close to player
                 var nearby_objects = this.map.get_nearby_objects();
 
@@ -61,6 +59,14 @@ define(
                     var o = nearby_objects[i];
                     o.update();
                 }
+
+                if(player.grounding_object != null){
+                    player.x += player.grounding_object.dx;
+                    player.y += player.grounding_object.dy;
+                }
+
+                player.on_ground = false;
+                player.grounding_object = null;
 
                 // check for player collisions
                 for(var i = 0; i < nearby_objects.length; i++){
