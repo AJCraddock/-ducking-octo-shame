@@ -16,6 +16,7 @@ define(
             var temp_graphics = this.image.getContext('2d');
             temp_graphics.fillStyle = "#FFFFFF";
             temp_graphics.fillRect(0, 0, this.width, this.height);
+            this.canvas = "fore";
         }
 
         GameObject.prototype = {

@@ -6,6 +6,8 @@ define(
     function(GameObject){
         function Mechanism(x, y, width, height, speed, path, image){
             GameObject.prototype.constructor.call(this, x, y, width, height);
+            
+            this.canvas = "volatile";
 
             this.MAX_SPEED = speed;
             this.dx = 0;

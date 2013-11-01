@@ -64,14 +64,24 @@ define(
                 //blank the screen
                 map.player.clear_old(this.f_graphics);
                 for(var i = 0; i < map.objects.length; i++){
-                    map.objects[i].clear_old(this.f_graphics);
+                    var obj = map.objects[i];
+                    if(obj.canvas == "fore"){
+                        obj.clear_old(this.f_graphics);
+                    }else if(obj.canvas == "volatile"){
+                        obj.clear_old(this.v_graphics);
+                    }
                 }
 
                 //draw the game objects
                 map.player.draw(this.f_graphics, this.f_canvas);
 
                 for(var i = 0; i < map.objects.length; i++){
-                    map.objects[i].draw(this.f_graphics, screen_x);
+                    var obj = map.objects[i];
+                    if(obj.canvas == "fore"){
+                        obj.draw(this.f_graphics, screen_x);
+                    }else if(obj.canvas == "volatile"){
+                        obj.draw(this.v_graphics, screen_x);
+                    }
                 }
             },
 
