@@ -1,9 +1,10 @@
 define(
     //dependencies
-    ['model/Map', 'model/Player', 'model/GameObject', 'model/GoalPlatform'],
+    ['model/Map', 'model/Player', 'model/GameObject', 
+    'model/GoalPlatform', 'model/Mechanism'],
 
     //module definition
-    function(Map, Player, GameObject, GoalPlatform){
+    function(Map, Player, GameObject, GoalPlatform, Mechanism){
 
         //constructor
         function MapLoader(){
@@ -16,14 +17,15 @@ define(
             "END"+
             "GameObjects: " +
             "GoalPlatform 3500 525 " + 
-            "0 0 30 600 " + 
-            "0 525 600 10 " + 
-            "400 425 90 100 " + 
-            "200 489 90 10 " + 
-            "700 525 600 10 " +
-            "1400 525 600 10 " +
-            "2100 525 600 10 " +
-            "2800 525 600 10" +
+            "GameObject 0 0 30 600 " + 
+            "GameObject 0 525 600 10 " + 
+            "GameObject 400 425 90 100 " + 
+            "GameObject 200 489 90 10 " + 
+            "GameObject 700 525 600 10 " +
+            "GameObject 1400 525 600 10 " +
+            "GameObject 2100 525 600 10 " +
+            "GameObject 2800 525 600 10 " +
+            "Mechanism 900 525 50 10 1 1 900 200" +
             "END" +
             "Background: 000000"+
             "ENDMAP" +
@@ -31,18 +33,19 @@ define(
             "END"+
             "GameObjects: " +
             "GoalPlatform 3500 100 " +
-            "3400 200 30 10 " +
-            "3320 300 30 10 " +
-            "3260 400 30 10 " +
-            "0 0 30 600 " + 
-            "0 525 600 10 " + 
-            "400 425 90 100 " + 
-            "200 489 90 10 " + 
-            "700 525 600 10 " +
-            "1400 525 600 10 " +
-            "1450 525 30 100 " +
-            "2100 525 600 10 " +
-            "2800 525 600 10" +
+            "GameObject 3400 200 30 10 " +
+            "GameObject 3320 300 30 10 " +
+            "GameObject 3260 400 30 10 " +
+            "GameObject 0 0 30 600 " + 
+            "GameObject 0 525 600 10 " + 
+            "GameObject 400 425 90 100 " + 
+            "GameObject 200 489 90 10 " + 
+            "GameObject 700 525 600 10 " +
+            "GameObject 1400 525 600 10 " +
+            "GameObject 1450 525 30 100 " +
+            "GameObject 2100 525 600 10 " +
+            "GameObject 2800 525 600 10 " +
+            "Mechanism 3200 525 50 10 3 1 3200 200" +
             "END" +
             "Background: 000000";
 
@@ -63,7 +66,6 @@ define(
             for(var j=0; j < map_data.length; j++){
                 var regex = /\W+/;
                 data = map_data[j].split(regex);
-                
                 //parse and create player object
                 if(data[0] == "Player"){
                     var x = parseInt(data[1]);
@@ -74,24 +76,64 @@ define(
                 //parse and create static objects
                 if(data[0] == "GameObjects"){
                     for(var k = 1; k < data.length;){
-                        if(data[k] == "GoalPlatform"){
-                            k++;
-                            var x = parseInt(data[k]);
-                            k++;
-                            var y = parseInt(data[k]);
-                            k++;
-                            objects.push(new GoalPlatform(x, y));
-                            continue;
+                        switch (data[k]){
+                            case "GoalPlatform":
+                                k++;
+                                var x = parseInt(data[k]);
+                                k++;
+                                var y = parseInt(data[k]);
+                                k++;
+                                objects.push(new GoalPlatform(x, y));
+                                break;
+                            case "GameObject":
+                                k++;
+                                var x = parseInt(data[k]);
+                                k++;
+                                var y = parseInt(data[k]);
+                                k++;
+                                var width = parseInt(data[k]);
+                                k++;
+                                var height = parseInt(data[k]);
+                                k++;
+                                objects.push(new GameObject(x, y, width, height));
+                                break;
+                            case "Mechanism":
+                                k++;
+                                var x = parseInt(data[k]);
+                                k++;
+                                var y = parseInt(data[k]);
+                                k++;
+                                var width = parseInt(data[k]);
+                                k++;
+                                var height = parseInt(data[k]);
+                                k++;
+                                var speed = parseInt(data[k]);
+                                k++;
+
+                                // build the path
+                                var path = new Array();
+                                var start = new Object();
+                                start.x = x;
+                                start.y = y;
+                                path.push(start);
+                                // get the points of the path
+                                var num_points = parseInt(data[k]);
+                                k++;
+
+                                while(num_points > 0){
+                                    point_x = parseInt(data[k]);
+                                    k++;
+                                    point_y = parseInt(data[k]);
+                                    k++;
+                                    var point = new Object();
+                                    point.x = point_x;
+                                    point.y = point_y;
+                                    path.push(point);
+                                    num_points--;
+                                }
+                                objects.push(new Mechanism(x, y, width, height, speed, path, null));
+                                break;
                         }
-                        var x = parseInt(data[k]);
-                        k++;
-                        var y = parseInt(data[k]);
-                        k++;
-                        var width = parseInt(data[k]);
-                        k++;
-                        var height = parseInt(data[k]);
-                        k++;
-                        objects.push(new GameObject(x, y, width, height));
                     }
                 }
 
