@@ -13,8 +13,9 @@ define(
             this.dx = 0;
             this.dy = 0;
             this.path = path;
-            this.curr_goal_index = 0;
+            this.curr_goal_index = 1;
             this.goal = this.path[this.curr_goal_index];
+            this.orient_toward_goal();
 
             if(image == null){
                 // create the default image for an object
@@ -33,8 +34,9 @@ define(
             this.x += this.dx;
             this.y += this.dy;
 
+            this.goal_counter--;
             // check if at next goal point and change goal if so
-            if(this.check_goal_collision()){
+            if(this.goal_counter <= 0){
                 this.change_goal();
                 this.orient_toward_goal();
             }
@@ -54,12 +56,12 @@ define(
         Mechanism.prototype.orient_toward_goal = function(){
             this.dx = (this.goal.x-this.x)/this.cycles_to_goal;
             this.dy = (this.goal.y-this.y)/this.cycles_to_goal;
+            this.goal_counter = this.cycles_to_goal;
         };
 
         Mechanism.prototype.change_goal = function(){
             this.curr_goal_index = (this.curr_goal_index+1) % this.path.length;
             this.goal = this.path[this.curr_goal_index];
-            console.log(this.goal);
         };
 
         return Mechanism;    
