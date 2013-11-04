@@ -4,12 +4,12 @@ define(
 
     // module definition
     function(GameObject){
-        function Mechanism(x, y, width, height, speed, path, image){
+        function Mechanism(x, y, width, height, cycles_to_goal, path, image){
             GameObject.prototype.constructor.call(this, x, y, width, height);
             
             this.canvas = "volatile";
 
-            this.MAX_SPEED = speed;
+            this.cycles_to_goal = cycles_to_goal;
             this.dx = 0;
             this.dy = 0;
             this.path = path;
@@ -52,18 +52,8 @@ define(
         };
 
         Mechanism.prototype.orient_toward_goal = function(){
-            var x_vector = this.goal.x - this.x;
-            var y_vector = this.goal.y - this.y;
-
-            var theta = Math.atan(y_vector/x_vector);
-
-            this.dx = this.MAX_SPEED * Math.cos(theta);
-            this.dy = this.MAX_SPEED * Math.sin(theta);
-            //this if should be replaced with something smarter.
-            if (x_vector < 0) {
-                this.dx *= -1;
-                this.dy *= -1;
-            }
+            this.dx = (this.goal.x-this.x)/this.cycles_to_goal;
+            this.dy = (this.goal.y-this.y)/this.cycles_to_goal;
         };
 
         Mechanism.prototype.change_goal = function(){
