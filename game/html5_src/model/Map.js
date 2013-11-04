@@ -4,6 +4,8 @@ define(
     function(){
         //constructor
         function Map(player, game_objects, background){
+            this.death_height = 750;
+
             this.player = player;
             this.objects = game_objects;
             this.background = background;
@@ -27,7 +29,6 @@ define(
             }
         }
 
-        //superclass definition
         Map.prototype = {
             constructor: Map,
 
@@ -69,7 +70,7 @@ define(
 
                 //add objects from the screen after the player's screen
                 if(p_index < s.length-1){
-                    for(var i = 0; i < s[p_index+1]; i++){
+                    for(var i = 0; i < s[p_index+1].length; i++){
                         nearby_objects.push(s[p_index+1][i]);
                     }
                 }

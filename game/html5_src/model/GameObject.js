@@ -6,6 +6,9 @@ define(
             this.x = x;
             this.y = y;
 
+            this.dx = 0;
+            this.dy = 0;
+
             this.width = width;
             this.height = height;
 
@@ -16,6 +19,7 @@ define(
             var temp_graphics = this.image.getContext('2d');
             temp_graphics.fillStyle = "#FFFFFF";
             temp_graphics.fillRect(0, 0, this.width, this.height);
+            this.canvas = "fore";
         }
 
         GameObject.prototype = {
@@ -28,14 +32,18 @@ define(
             handle_player_collision: function(player){
                 var temp_x, temp_y, temp_dx, temp_dy;
                 var temp_on_ground;
+                var temp_grounding_object;
+
                 //this.player is above object
                 if (player.y < this.y){
                     temp_y = this.y-player.height;
                     temp_on_ground = true;
+                    temp_grounding_object = this;
                     temp_dy = 0;
                 }else{ //this.player is below object
                     temp_y = this.y+this.height
                     temp_on_ground = false;
+                    temp_grounding_object = null;
                     temp_dy = 0;
                 }
                 if (player.x < this.x){
@@ -52,6 +60,7 @@ define(
                 }else{
                     player.y = temp_y;
                     player.on_ground = temp_on_ground;
+                    player.grounding_object = temp_grounding_object;
                     player.dy = temp_dy;
                 }
             },

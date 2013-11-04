@@ -7,6 +7,7 @@ define(
             this.y = y;
             this.dx = 0;
             this.dy = 0;
+            this.ddx = 0.12;
             this.MAX_DX = 5;
             this.MAX_DY = 10;
             this.width = 25;
@@ -18,6 +19,8 @@ define(
             
             this.last_render_x = 0;
             this.last_render_y = 0;
+
+            this.grounding_object = null;
         }
 
         Player.prototype = {
