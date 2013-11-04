@@ -35,8 +35,6 @@ define(
 
             // check if at next goal point and change goal if so
             if(this.check_goal_collision()){
-                console.log("changing goal");
-                console.log(this.path);
                 this.change_goal();
                 this.orient_toward_goal();
             }
