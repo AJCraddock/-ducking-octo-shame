@@ -69,7 +69,6 @@ define(
         Mechanism.prototype.change_goal = function(){
             this.curr_goal_index = (this.curr_goal_index+1) % this.path.length;
             this.goal = this.path[this.curr_goal_index];
-            console.log(this.goal);
         };
 
         return Mechanism;    
