@@ -11,6 +11,25 @@ define(
             //fields
             this.curr_map_index = 0;
 
+            var map_json_str = 
+            "[\
+            {\
+                'Player': {'x':80, 'y':80},\
+                'GameObjects':\
+                [\
+                    {'type':'GoalPlatform', 'x':3500, 'y':525},\
+                    {'type':'Mechanism', 'x':31, 'y':525, 'width':300, 'height':100, 'cycles_to_goal':200, 'goals':[\
+                            {'x':31, 'y':200}\
+                        ]\
+                    },\
+                    {},\
+                    {},\
+                    {}\
+                ],\
+                'Background': 000000\
+            }\
+            ]"
+
             //temporary map string
             var map_data_str =
             "Player: 80 80" +
