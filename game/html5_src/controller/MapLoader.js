@@ -18,12 +18,12 @@ define(
             "GameObjects: " +
             "GoalPlatform 3500 525 " + 
             "GameObject 0 0 30 600 " + 
-            "Mechanism 31 525 300 100 2 1 31 200 " + 
-            "Mechanism 400 225 90 100 2 1 400 525 " + 
-            "Mechanism 700 525 600 100 2 1 700 100 " +
-            "Mechanism 1400 100 600 10 2 1 1400 525 " +
+            "Mechanism 31 525 300 100 200 1 31 200 " + 
+            "Mechanism 400 225 90 100 200 1 400 525 " + 
+            "Mechanism 700 525 600 100 200 1 700 100 " +
+            "Mechanism 1400 100 600 10 200 1 1400 525 " +
             "GameObject 2100 525 600 10 " +
-            "Mechanism 2800 525 100 10 2 1 3300 525" +
+            "Mechanism 2800 525 100 10 200 1 3300 525" +
             "END" +
             "Background: 000000"+
             "ENDMAP" +
@@ -39,7 +39,7 @@ define(
             "GameObject 1400 525 600 10 " +
             "GameObject 2100 525 600 10 " +
             "GameObject 2800 525 600 10 " +
-            "Mechanism 900 525 50 10 1 1 900 200" +
+            "Mechanism 900 525 50 10 200 1 900 200" +
             "END" +
             "Background: 000000"+
             "ENDMAP" +
@@ -59,7 +59,7 @@ define(
             "GameObject 1450 525 30 100 " +
             "GameObject 2100 525 600 10 " +
             "GameObject 2800 525 600 10 " +
-            "Mechanism 3200 525 50 10 3 1 3200 200" +
+            "Mechanism 3200 525 50 10 200 1 3200 200" +
             "END" +
             "Background: 000000";
 
