@@ -85,9 +85,31 @@ define(
             this.maps = JSON.parse(maps_json_str);
         }
 
-        //maps are dictionaries of player, game objects, and background
-        MapLoader.create_map = function(map_str){
-            
+        // maps are dictionaries of player, game objects, and background
+        MapLoader.create_map = function(map_json){
+            // GameObjects is a list of dictionaries representing game objects
+            var json_game_objects = map_json.GameObjects;
+            var game_objects = new Array();
+
+            for(var i = 0; i < json_game_objects.length; i++){
+                var game_object = json_game_objects[i];
+
+                switch(game_object.type){
+                    case 'GameObject':
+                        game_objects.push(new GameObject(game_object.x, game_object.y, game_object.width, game_object.height));
+                        break;
+                    case 'Mechanism':
+                        game_objects.push(new Mechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals));
+                        break;
+                    case 'GoalPlatform':
+                        game_objects.push(new GoalPlatform(game_object.x, game_object.y));
+                        break;
+                }
+            }
+
+            var player = new Player(map_json.Player.x, map_json.Player.y);
+
+            return new Map(player, game_objects, )
         };
 
         //superclass definition
