@@ -11,7 +11,7 @@ define(
             //fields
             this.curr_map_index = 0;
 
-            var map_json_str = 
+            var maps_json_str = 
             "[\
             {\
                 'Player': {'x':80, 'y':80},\
@@ -82,104 +82,12 @@ define(
             "END" +
             "Background: 000000";
 
-            this.maps = MapLoader.create_map_strings(map_data_str);
+            this.maps = JSON.parse(maps_json_str);
         }
 
-        MapLoader.create_map_strings = function(map_data_str){
-            return map_data_str.split("ENDMAP");
-        }
-
+        //maps are dictionaries of player, game objects, and background
         MapLoader.create_map = function(map_str){
-            var map_data = map_str.split("END");
             
-            var player;
-            var objects = new Array();
-            var background = document.createElement("canvas");
-
-            for(var j=0; j < map_data.length; j++){
-                var regex = /\W+/;
-                data = map_data[j].split(regex);
-                //parse and create player object
-                if(data[0] == "Player"){
-                    var x = parseInt(data[1]);
-                    var y = parseInt(data[2]);
-                    player = new Player(x, y);
-                }
-
-                //parse and create static objects
-                if(data[0] == "GameObjects"){
-                    for(var k = 1; k < data.length;){
-                        switch (data[k]){
-                            case "GoalPlatform":
-                                k++;
-                                var x = parseInt(data[k]);
-                                k++;
-                                var y = parseInt(data[k]);
-                                k++;
-                                objects.push(new GoalPlatform(x, y));
-                                break;
-                            case "GameObject":
-                                k++;
-                                var x = parseInt(data[k]);
-                                k++;
-                                var y = parseInt(data[k]);
-                                k++;
-                                var width = parseInt(data[k]);
-                                k++;
-                                var height = parseInt(data[k]);
-                                k++;
-                                objects.push(new GameObject(x, y, width, height));
-                                break;
-                            case "Mechanism":
-                                k++;
-                                var x = parseInt(data[k]);
-                                k++;
-                                var y = parseInt(data[k]);
-                                k++;
-                                var width = parseInt(data[k]);
-                                k++;
-                                var height = parseInt(data[k]);
-                                k++;
-                                var speed = parseInt(data[k]);
-                                k++;
-
-                                // build the path
-                                var path = new Array();
-                                var start = new Object();
-                                start.x = x;
-                                start.y = y;
-                                path.push(start);
-                                // get the points of the path
-                                var num_points = parseInt(data[k]);
-                                k++;
-
-                                while(num_points > 0){
-                                    point_x = parseInt(data[k]);
-                                    k++;
-                                    point_y = parseInt(data[k]);
-                                    k++;
-                                    var point = new Object();
-                                    point.x = point_x;
-                                    point.y = point_y;
-                                    path.push(point);
-                                    num_points--;
-                                }
-                                objects.push(new Mechanism(x, y, width, height, speed, path, null));
-                                break;
-                        }
-                    }
-                }
-
-                //parse and create background
-                if(data[0] == "Background"){
-                    background.width = 800;
-                    background.height = 600;
-                    var temp_graphics = background.getContext('2d');
-                    temp_graphics.fillStyle = "#" + data[1];
-                    temp_graphics.fillRect(0, 0, background.width, background.height);
-                }
-            }
-            return new Map(player, objects, background);
         };
 
         //superclass definition
