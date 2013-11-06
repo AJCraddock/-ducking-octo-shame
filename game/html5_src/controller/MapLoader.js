@@ -26,9 +26,9 @@ define(
                     {},\
                     {}\
                 ],\
-                'Background': 000000\
+                'Background': '000000'\
             }\
-            ]"
+            ]";
 
             //temporary map string
             var map_data_str =
@@ -108,8 +108,15 @@ define(
             }
 
             var player = new Player(map_json.Player.x, map_json.Player.y);
-
-            return new Map(player, game_objects, )
+            
+            var background = document.createElement('canvas');
+            background.width = 800;
+            background.height = 600;
+            var temp_graphics = background.getContext('2d');
+            temp_graphics.fillStyle = "#" + game_object.background;
+            temp_graphics.fillRect(0, 0, background.width, background.height);
+            
+            return new Map(player, game_objects, background);
         };
 
         //superclass definition
