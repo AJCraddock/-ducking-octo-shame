@@ -1,78 +1,15 @@
 define(
     //dependencies
-    ['model/Map', 'model/Player', 'model/GameObject', 
+    ['model/Map', 'model/Maps', 'model/Player', 'model/GameObject', 
     'model/GoalPlatform', 'model/Mechanism'],
 
     //module definition
-    function(Map, Player, GameObject, GoalPlatform, Mechanism){
+    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism){
 
         //constructor
         function MapLoader(){
             //fields
             this.curr_map_index = 0;
-
-            this.maps = 
-            [
-            {
-                "Player": {"x":80, "y":80},
-                "GameObjects":
-                [
-                    {"type": "GameObject", "x":0, "y":0, "width":30, "height":600},
-                    {"type":"GoalPlatform", "x":3500, "y":525},
-                    {"type":"Mechanism", "x":31, "y":525, "width":300, "height":100, "cycles_to_goal":200, "goals":[
-                            {"x":31, "y":200}
-                        ]
-                    },
-                    {"type":"Mechanism", "x":400, "y":225, "width":90, "height":100, "cycles_to_goal":100, "goals":[
-                            {"x":400, "y":525}
-                        ]
-                    },
-                    {"type":"Mechanism", "x":700, "y":525, "width":600, "height":100, "cycles_to_goal":200, "goals":[
-                            {"x":700, "y":100}
-                        ]
-                    },
-                    {"type":"Mechanism", "x":1400, "y":100, "width":600, "height":10, "cycles_to_goal":200, "goals":[
-                            {"x":1400, "y":525}
-                        ]
-                    },
-                    {"type": "GameObject", "x":2100, "y":525, "width":600, "height":10},
-                    {"type":"Mechanism", "x":2800, "y":525, "width":100, "height":10, "cycles_to_goal":200, "goals":[
-                            {"x":3300, "y":525}
-                        ]
-                    },
-                ],
-                "Background": '#000000'
-            },
-            {
-                "Player": {"x":80, "y":80},
-                "GameObjects":
-                [
-                    {"type":"GoalPlatform", "x":3500, "y":525},
-                    {"type": "GameObject", "x":0, "y":525, "width":600, "height":10},
-                    {"type":"GameObject", "x":0, "y":0, "width":30, "height":600},
-                    {"type":"Mechanism", "x":400, "y":225, "width":90, "height":100, "cycles_to_goal":100, "goals":[
-                            {"x":400, "y":525}
-                        ]
-                    },
-                    {"type":"Mechanism", "x":700, "y":525, "width":600, "height":100, "cycles_to_goal":200, "goals":[
-                            {"x":700, "y":100}
-                        ]
-                    },
-                    {"type":"Mechanism", "x":1400, "y":100, "width":600, "height":10, "cycles_to_goal":200, "goals":[
-                            {"x":1400, "y":525}
-                        ]
-                    },
-                    {"type": "GameObject", "x":2100, "y":525, "width":600, "height":10},
-                    {"type":"Mechanism", "x":2800, "y":525, "width":100, "height":10, "cycles_to_goal":200, "goals":[
-                            {"x":3300, "y":525}
-                        ]
-                    },
-                ],
-                "Background": '#000000'
-            },
-            ];
-
-            //this.maps = JSON.parse(maps_json_str);
         }
 
         // maps are dictionaries of player, game objects, and background
@@ -114,13 +51,13 @@ define(
             constructor: MapLoader,
 
             load_next_map: function(){
-                this.curr_map_index = (this.curr_map_index+1)%this.maps.length;
-                var map = MapLoader.create_map(this.maps[this.curr_map_index]);
+                this.curr_map_index = (this.curr_map_index+1)%Maps.length;
+                var map = MapLoader.create_map(Maps[this.curr_map_index]);
                 return map;
             },
 
             reset_curr_map: function(){
-                var map = MapLoader.create_map(this.maps[this.curr_map_index]);
+                var map = MapLoader.create_map(Maps[this.curr_map_index]);
                 return map;
             }
         };
