@@ -11,78 +11,68 @@ define(
             //fields
             this.curr_map_index = 0;
 
-            var maps_json_str = 
-            "[\
-            {\
-                'Player': {'x':80, 'y':80},\
-                'GameObjects':\
-                [\
-                    {'type':'GoalPlatform', 'x':3500, 'y':525},\
-                    {'type':'Mechanism', 'x':31, 'y':525, 'width':300, 'height':100, 'cycles_to_goal':200, 'goals':[\
-                            {'x':31, 'y':200}\
-                        ]\
-                    },\
-                    {},\
-                    {},\
-                    {}\
-                ],\
-                'Background': '000000'\
-            }\
-            ]";
+            this.maps = 
+            [
+            {
+                "Player": {"x":80, "y":80},
+                "GameObjects":
+                [
+                    {"type": "GameObject", "x":0, "y":0, "width":30, "height":600},
+                    {"type":"GoalPlatform", "x":3500, "y":525},
+                    {"type":"Mechanism", "x":31, "y":525, "width":300, "height":100, "cycles_to_goal":200, "goals":[
+                            {"x":31, "y":200}
+                        ]
+                    },
+                    {"type":"Mechanism", "x":400, "y":225, "width":90, "height":100, "cycles_to_goal":100, "goals":[
+                            {"x":400, "y":525}
+                        ]
+                    },
+                    {"type":"Mechanism", "x":700, "y":525, "width":600, "height":100, "cycles_to_goal":200, "goals":[
+                            {"x":700, "y":100}
+                        ]
+                    },
+                    {"type":"Mechanism", "x":1400, "y":100, "width":600, "height":10, "cycles_to_goal":200, "goals":[
+                            {"x":1400, "y":525}
+                        ]
+                    },
+                    {"type": "GameObject", "x":2100, "y":525, "width":600, "height":10},
+                    {"type":"Mechanism", "x":2800, "y":525, "width":100, "height":10, "cycles_to_goal":200, "goals":[
+                            {"x":3300, "y":525}
+                        ]
+                    },
+                ],
+                "Background": '#000000'
+            },
+            {
+                "Player": {"x":80, "y":80},
+                "GameObjects":
+                [
+                    {"type":"GoalPlatform", "x":3500, "y":525},
+                    {"type": "GameObject", "x":0, "y":525, "width":600, "height":10},
+                    {"type":"GameObject", "x":0, "y":0, "width":30, "height":600},
+                    {"type":"Mechanism", "x":400, "y":225, "width":90, "height":100, "cycles_to_goal":100, "goals":[
+                            {"x":400, "y":525}
+                        ]
+                    },
+                    {"type":"Mechanism", "x":700, "y":525, "width":600, "height":100, "cycles_to_goal":200, "goals":[
+                            {"x":700, "y":100}
+                        ]
+                    },
+                    {"type":"Mechanism", "x":1400, "y":100, "width":600, "height":10, "cycles_to_goal":200, "goals":[
+                            {"x":1400, "y":525}
+                        ]
+                    },
+                    {"type": "GameObject", "x":2100, "y":525, "width":600, "height":10},
+                    {"type":"Mechanism", "x":2800, "y":525, "width":100, "height":10, "cycles_to_goal":200, "goals":[
+                            {"x":3300, "y":525}
+                        ]
+                    },
+                ],
+                "Background": '#000000'
+            },
+            ];
 
-            //temporary map string
-            var map_data_str =
-            "Player: 80 80" +
-            "END"+
-            "GameObjects: " +
-            "GoalPlatform 3500 525 " + 
-            "GameObject 0 0 30 600 " + 
-            "Mechanism 31 525 300 100 200 1 31 200 " + 
-            "Mechanism 400 225 90 100 200 1 400 525 " + 
-            "Mechanism 700 525 600 100 200 1 700 100 " +
-            "Mechanism 1400 100 600 10 200 1 1400 525 " +
-            "GameObject 2100 525 600 10 " +
-            "Mechanism 2800 525 100 10 200 1 3300 525" +
-            "END" +
-            "Background: 000000"+
-            "ENDMAP" +
-            "Player: 80 80" +
-            "END"+
-            "GameObjects: " +
-            "GoalPlatform 3500 525 " + 
-            "GameObject 0 0 30 600 " + 
-            "GameObject 0 525 600 10 " + 
-            "GameObject 400 425 90 100 " + 
-            "GameObject 200 489 90 10 " + 
-            "GameObject 700 525 600 10 " +
-            "GameObject 1400 525 600 10 " +
-            "GameObject 2100 525 600 10 " +
-            "GameObject 2800 525 600 10 " +
-            "Mechanism 900 525 50 10 200 1 900 200" +
-            "END" +
-            "Background: 000000"+
-            "ENDMAP" +
-            "Player: 80 80" +
-            "END"+
-            "GameObjects: " +
-            "GoalPlatform 3500 100 " +
-            "GameObject 3400 200 30 10 " +
-            "GameObject 3320 300 30 10 " +
-            "GameObject 3260 400 30 10 " +
-            "GameObject 0 0 30 600 " + 
-            "GameObject 0 525 600 10 " + 
-            "GameObject 400 425 90 100 " + 
-            "GameObject 200 489 90 10 " + 
-            "GameObject 700 525 600 10 " +
-            "GameObject 1400 525 600 10 " +
-            "GameObject 1450 525 30 100 " +
-            "GameObject 2100 525 600 10 " +
-            "GameObject 2800 525 600 10 " +
-            "Mechanism 3200 525 50 10 200 1 3200 200" +
-            "END" +
-            "Background: 000000";
-
-            this.maps = JSON.parse(maps_json_str);
+            //this.maps = JSON.parse(maps_json_str);
         }
 
         // maps are dictionaries of player, game objects, and background
@@ -99,7 +89,7 @@ define(
                         game_objects.push(new GameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
                     case 'Mechanism':
-                        game_objects.push(new Mechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals));
+                        game_objects.push(new Mechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals, null));
                         break;
                     case 'GoalPlatform':
                         game_objects.push(new GoalPlatform(game_object.x, game_object.y));
@@ -113,7 +103,7 @@ define(
             background.width = 800;
             background.height = 600;
             var temp_graphics = background.getContext('2d');
-            temp_graphics.fillStyle = "#" + game_object.background;
+            temp_graphics.fillStyle = map_json.Background;
             temp_graphics.fillRect(0, 0, background.width, background.height);
             
             return new Map(player, game_objects, background);

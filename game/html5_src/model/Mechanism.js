@@ -12,8 +12,17 @@ define(
             this.cycles_to_goal = cycles_to_goal;
             this.dx = 0;
             this.dy = 0;
-            this.path = path;
-            this.curr_goal_index = 1;
+
+            // make a copy of the path array
+            this.path = new Array();
+            for(var i = 0; i < path.length; i++){
+                this.path.push({"x":path[i].x, "y":path[i].y});
+            }
+
+            // push the starting position onto the path
+            this.path.push({"x":x, "y":y});
+
+            this.curr_goal_index = 0;
             this.goal = this.path[this.curr_goal_index];
             this.orient_toward_goal();
 
