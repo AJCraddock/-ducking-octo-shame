@@ -42,7 +42,7 @@ define(
                     temp_dy = 0;
                 }else{ //this.player is below object
                     temp_y = this.y+this.height
-                    temp_dy = 0;
+                    temp_dy = 0.4;
                 }
                 if (player.x < this.x){
                     temp_x = this.x-player.width;
