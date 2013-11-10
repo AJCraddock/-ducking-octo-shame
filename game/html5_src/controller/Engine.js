@@ -131,6 +131,9 @@ define(
             },
 
             robot_interface_mode: function(){
+                // handle events
+                // when done change engine mode back to game_running
+                // when done change player.touching_robot to false
             },
 
             check_player_collision: function(object){
