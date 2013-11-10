@@ -5,7 +5,7 @@ define(
     // class definition
     function(GameObject){
         function Robot(x, y){
-            GameObject.prototype.constructor.call(this, x, y, 25, 25);
+            GameObject.prototype.constructor.call(this, x, y, 50, 35);
 
             // create the default image for an object
             var temp_graphics = this.image.getContext('2d');

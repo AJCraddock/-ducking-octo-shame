@@ -15,7 +15,7 @@ define(
                         {"x":400, "y":525}
                     ]
                 },
-                {"type":"Robot", "x":400, "y":500},
+                {"type":"Robot", "x":300, "y":490},
                 {"type":"Mechanism", "x":700, "y":525, "width":600, "height":100, "cycles_to_goal":200, "goals":[
                         {"x":700, "y":100}
                     ]
