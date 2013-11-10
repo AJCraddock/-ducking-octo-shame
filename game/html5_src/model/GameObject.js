@@ -2,7 +2,7 @@ define(
     //module definition
     function(){
         //constructor
-        function GameObject(x, y, width, height){
+        function GameObject(x, y, width, height, image=null){
             this.x = x;
             this.y = y;
 
@@ -12,14 +12,19 @@ define(
             this.width = width;
             this.height = height;
 
-            //create the default image for an object
-            this.image = document.createElement('canvas');
-            this.image.width = this.width;
-            this.image.height = this.height;
-            var temp_graphics = this.image.getContext('2d');
-            temp_graphics.fillStyle = "#FFFFFF";
-            temp_graphics.fillRect(0, 0, this.width, this.height);
             this.canvas = "fore";
+            
+            //create the default image for an object
+            if(image == null){
+                this.image = document.createElement('canvas');
+                this.image.width = this.width;
+                this.image.height = this.height;
+                var temp_graphics = this.image.getContext('2d');
+                temp_graphics.fillStyle = "#FFFFFF";
+                temp_graphics.fillRect(0, 0, this.width, this.height);
+            }else{
+                this.image = image;
+            }
         }
 
         GameObject.prototype = {
