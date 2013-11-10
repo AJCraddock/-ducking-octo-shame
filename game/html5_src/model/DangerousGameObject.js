@@ -4,7 +4,7 @@ define(
 
     // class definition
     function(GameObject){
-        function DangerousGameObject(x, y, width, height, image=null){
+        function DangerousGameObject(x, y, width, height, image){
             GameObject.prototype.constructor.call(this, x, y, width, height);
 
             //create the default image for an object

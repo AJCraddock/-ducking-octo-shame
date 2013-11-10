@@ -2,7 +2,7 @@ define(
     //module definition
     function(){
         //constructor
-        function GameObject(x, y, width, height, image=null){
+        function GameObject(x, y, width, height, image){
             this.x = x;
             this.y = y;
 
