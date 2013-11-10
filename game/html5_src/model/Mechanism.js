@@ -15,8 +15,10 @@ define(
 
             // make a copy of the path array
             this.path = new Array();
-            for(var i = 0; i < path.length; i++){
-                this.path.push({"x":path[i].x, "y":path[i].y});
+            if(path != null){
+                for(var i = 0; i < path.length; i++){
+                    this.path.push({"x":path[i].x, "y":path[i].y});
+                }
             }
 
             // push the starting position onto the path
