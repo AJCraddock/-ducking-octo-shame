@@ -10,6 +10,7 @@ define(
                 {"type":"GoalPlatform", "x":3500, "y":525},
                 {"type": "GameObject", "x":0, "y":525, "width":600, "height":10},
                 {"type":"GameObject", "x":0, "y":0, "width":30, "height":600},
+                {"type": "DangerousGameObject", "x":150, "y":400, "width":50, "height":50},
                 {"type":"Mechanism", "x":400, "y":225, "width":90, "height":100, "cycles_to_goal":500, "goals":[
                         {"x":400, "y":525}
                     ]

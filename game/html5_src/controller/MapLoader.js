@@ -1,10 +1,10 @@
 define(
     //dependencies
     ['model/Map', 'model/Maps', 'model/Player', 'model/GameObject', 
-    'model/GoalPlatform', 'model/Mechanism'],
+    'model/GoalPlatform', 'model/Mechanism', 'model/DangerousGameObject'],
 
     //module definition
-    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism){
+    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism, DangerousGameObject){
 
         //constructor
         function MapLoader(){
@@ -23,13 +23,20 @@ define(
 
                 switch(game_object.type){
                     case 'GameObject':
-                        game_objects.push(new GameObject(game_object.x, game_object.y, game_object.width, game_object.height));
+                        if(game_object.image == null){
+                            game_objects.push(new GameObject(game_object.x, game_object.y, game_object.width, game_object.height));
+                        }else{
+                            // handle creating an object with a set image
+                        }
                         break;
                     case 'Mechanism':
                         game_objects.push(new Mechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals, null));
                         break;
                     case 'GoalPlatform':
                         game_objects.push(new GoalPlatform(game_object.x, game_object.y));
+                        break;
+                    case 'DangerousGameObject':
+                        game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
                 }
             }
