@@ -1,11 +1,10 @@
 define(
     //dependencies
-    ['controller/MapLoader', 
-    'controller/PlayerController', 
-    'controller/PressAnythingController'],
+    ['controller/MapLoader', 'controller/PlayerController', 
+    'controller/PressAnythingController', 'controller/ScriptController'],
 
     //module definition
-    function(MapLoader, PlayerController, PressAnythingController){
+    function(MapLoader, PlayerController, PressAnythingController, ScriptController){
         //constructor
         function Engine(){
             this.GRAVITY = 0.4;
@@ -13,6 +12,7 @@ define(
             this.map_loader = new MapLoader();
             this.player_controller = new PlayerController();
             this.press_anything_controller = new PressAnythingController();
+            this.script_controller = new ScriptController();
             
             this.current_controller = this.player_controller;
 
@@ -70,6 +70,7 @@ define(
 
                 player.on_ground = false;
                 player.grounding_object = null;
+                player.touching_robot = false;
 
                 // check for player collisions
                 for(var i = 0; i < nearby_objects.length; i++){
@@ -97,10 +98,10 @@ define(
                     this.current_controller = this.press_anything_controller;
                 }
 
-                if(player.touching_robot){
+                if(player.touching_robot && player.interacting){
                     this.mode = "robot_interface";
-                    this.player_controller.reset();
-                    // change controller to the robot interface controller
+                    this.current_controller.reset();
+                    this.current_controller = this.script_controller;
                 }
             },
 
@@ -132,8 +133,12 @@ define(
 
             robot_interface_mode: function(){
                 // handle events
-                // when done change engine mode back to game_running
-                // when done change player.touching_robot to false
+                var done = this.current_controller.handle_input();
+                if(done){
+                    this.mode = "game_running";
+                    this.current_controller.reset();
+                    this.current_controller = this.player_controller;
+                }
             },
 
             check_player_collision: function(object){

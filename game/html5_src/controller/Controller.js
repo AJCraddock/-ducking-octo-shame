@@ -5,10 +5,12 @@ define(
     //module definition
     function(){
         function Controller(){
-            this.keys_down = {A:false, D:false, W:false, S:false, Space:false};
+            this.keys_down = {A:false, D:false, W:false, S:false, Space:false, E:false, Esc:false};
             this.A = 65;
             this.D = 68;
-            this.SPACE = 32;            
+            this.E = 69;
+            this.Esc = 27;
+            this.SPACE = 32;
         }
 
         Controller.prototype = {
@@ -20,6 +22,10 @@ define(
                     this.keys_down.A = true;
                 }else if(key == this.D){
                     this.keys_down.D = true;
+                }else if(key == this.E){
+                    this.keys_down.E = true;
+                }else if(key == this.Esc){
+                    this.keys_down.Esc = true;
                 }else if(key == this.SPACE){
                     this.keys_down.Space = true;
                 }
@@ -31,6 +37,10 @@ define(
                     this.keys_down.A = false;
                 }else if(key == this.D){
                     this.keys_down.D = false;
+                }else if(key == this.E){
+                    this.keys_down.E = false;
+                }else if(key == this.Esc){
+                    this.keys_down.Esc = false;
                 }else if(key == this.SPACE){
                     this.keys_down.Space = false;
                 }
@@ -44,7 +54,9 @@ define(
                 this.keys_down.S = false;
                 this.keys_down.D = false;
                 this.keys_down.W = false;
+                this.keys_down.E = false;
                 this.keys_down.Space = false;
+                this.keys_down.Esc = false;
             }
         };
 

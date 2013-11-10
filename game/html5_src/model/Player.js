@@ -17,6 +17,7 @@ define(
             this.dead = false;
             this.victorious = false;
             this.touching_robot = false;
+            this.interacting = false;
             
             this.last_render_x = 0;
             this.last_render_y = 0;

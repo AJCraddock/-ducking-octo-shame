@@ -19,7 +19,6 @@ define(
         Robot.prototype.handle_player_collision = function(player){
             GameObject.prototype.handle_player_collision.call(this, player);
             player.touching_robot = true;
-            console.log(player.x + ", " + player.y);
         };
 
         return Robot;

@@ -5,7 +5,7 @@ define(
     //module definition
     function(Controller){
         function PlayerController(){
-            Controller.prototype.constructor.call(this);            
+            Controller.prototype.constructor.call(this);
         }
 
         PlayerController.prototype = new Controller();
@@ -23,6 +23,13 @@ define(
                     player.dx = Math.min(player.dx+player.ddx, 0);
                 }
             }
+
+            if(this.keys_down.E){
+                player.interacting = true;
+            }else{
+                player.interacting = false;
+            }
+
             if (this.keys_down.Space){
                 this.jump(player);
             }
