@@ -12,7 +12,7 @@ define(
                 this.image.width = width;
                 this.image.height = height;
                 var temp_graphics = this.image.getContext('2d');
-                temp_graphics.fillStyle = "#FF6500";
+                temp_graphics.fillStyle = "#FF6000";
                 temp_graphics.fillRect(0, 0, width, height);    
             }else{
                 this.image = image;
