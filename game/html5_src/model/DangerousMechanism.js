@@ -23,7 +23,7 @@ define(
         DangerousMechanism.prototype.constructor = DangerousMechanism;
 
         DangerousMechanism.prototype.handle_player_collision = function(player){
-            Mechanism.prototype.handle_player_collision(player);
+            Mechanism.prototype.handle_player_collision.call(this, player);
             player.dead = true;
         };
 

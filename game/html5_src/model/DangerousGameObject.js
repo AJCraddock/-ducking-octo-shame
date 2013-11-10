@@ -24,7 +24,7 @@ define(
         DangerousGameObject.prototype.constructor = DangerousGameObject;
 
         DangerousGameObject.prototype.handle_player_collision = function(player){
-            GameObject.prototype.handle_player_collision(player);
+            GameObject.prototype.handle_player_collision.call(this, player);
             player.dead = true;
         };
 
