@@ -39,6 +39,9 @@ define(
                     case "victory":
                         this.victory_render();
                         break;
+                    case "robot_interface":
+                        this.robot_interface_render();
+                        break;
                 }
             },
 
@@ -101,6 +104,9 @@ define(
                 this.v_graphics.fillText("LEVEL COMPLETE!", this.v_canvas.width/2, this.v_canvas.height/2);
                 this.v_graphics.font = "30px Colibri";
                 this.v_graphics.fillText("Press [Space] to continue...", this.v_canvas.width/2, (this.v_canvas.height/2)+30);
+            },
+
+            robot_interface_render: function(){
             }
 
         };

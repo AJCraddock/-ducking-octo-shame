@@ -16,6 +16,11 @@ define(
         Robot.prototype = new GameObject();
         Robot.prototype.constructor = Robot;
 
+        Robot.prototype.handle_player_collision = function(player){
+            GameObject.prototype.handle_player_collision(player);
+            player.touching_robot = true;
+        };
+
         return Robot;
     }
 );

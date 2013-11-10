@@ -36,6 +36,9 @@ define(
                     case "victory":
                         this.victory_mode();
                         break;
+                    case "robot_interface":
+                        this.robot_interface_mode();
+                        break;
                 }
             },
 
@@ -93,6 +96,12 @@ define(
                     this.player_controller.reset();
                     this.current_controller = this.press_anything_controller;
                 }
+
+                if(player.touching_robot){
+                    this.mode = "robot_interface";
+                    this.player_controller.reset();
+                    // change controller to the robot interface controller
+                }
             },
 
             game_over_mode: function(){
@@ -119,6 +128,9 @@ define(
                     this.press_anything_controller.reset();
                     this.current_controller = this.player_controller;
                 }
+            },
+
+            robot_interface_mode: function(){
             },
 
             check_player_collision: function(object){
