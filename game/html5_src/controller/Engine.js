@@ -1,10 +1,11 @@
 define(
     //dependencies
     ['controller/MapLoader', 'controller/PlayerController', 
-    'controller/PressAnythingController', 'controller/ScriptController'],
+    'controller/PressAnythingController', 'controller/ScriptController', 
+    'model/ScriptButton'],
 
     //module definition
-    function(MapLoader, PlayerController, PressAnythingController, ScriptController){
+    function(MapLoader, PlayerController, PressAnythingController, ScriptController, ScriptButton){
         //constructor
         function Engine(){
             this.GRAVITY = 0.4;
@@ -17,6 +18,13 @@ define(
             this.current_controller = this.player_controller;
 
             this.map = this.map_loader.reset_curr_map();
+
+            this.script_buttons = new Array();
+
+            this.script_buttons.push(new ScriptButton(100, 500, "Move >", 1));
+            this.script_buttons.push(new ScriptButton(252, 500, "Move <", 1));
+            this.script_buttons.push(new ScriptButton(404, 500, "Jump"));
+            this.script_buttons.push(new ScriptButton(556, 500, "Wait", 1));
 
             this.mode = "game_running";
         }

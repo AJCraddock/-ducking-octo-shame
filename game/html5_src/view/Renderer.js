@@ -19,6 +19,8 @@ define(
 
             this.b_graphics.drawImage(engine.map.background, 0, 0);
 
+            this.old_mode = this.engine.mode;
+
             this.curr_map = this.engine.map;
         }
 
@@ -28,7 +30,13 @@ define(
             render: function(){
                 // call requestAnimationFrame in such a way that 'this' still works in this function
                 this.main_window.requestAnimationFrame(function(){return renderer.render()});
-                
+
+                if(this.old_mode == "robot_interface" && this.engine.mode != "robot_interface"){
+                    this.clear_robot_interface();
+                }
+
+                this.old_mode = this.engine.mode;
+
                 switch(this.engine.mode){
                     case "game_running":
                         this.game_running_render();
@@ -86,6 +94,11 @@ define(
                         obj.draw(this.v_graphics, screen_x);
                     }
                 }
+
+                if(map.player.touching_robot){
+                    this.v_graphics.fillStyle = "#0000FF";
+                    this.v_graphics.font = "18px Colibri";
+                }
             },
 
             game_over_render: function(){
@@ -107,6 +120,22 @@ define(
             },
 
             robot_interface_render: function(){
+                for(var i = 0; i < this.engine.script_buttons.length; i++){
+                    var script_button = this.engine.script_buttons[i];
+                    script_button.clear_old(this.v_graphics);
+                }
+
+                for(var i = 0; i < this.engine.script_buttons.length; i++){
+                    var script_button = this.engine.script_buttons[i];
+                    script_button.draw(this.v_graphics);
+                }
+            },
+
+            clear_robot_interface: function(){
+                for(var i = 0; i < this.engine.script_buttons.length; i++){
+                    var script_button = this.engine.script_buttons[i];
+                    script_button.clear_old(this.v_graphics);
+                }
             }
 
         };
