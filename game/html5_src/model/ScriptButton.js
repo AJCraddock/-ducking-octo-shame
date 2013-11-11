@@ -4,11 +4,10 @@ define(
 
     // class definition
     function(){
-        function ScriptButton(x, y, type, time){
+        function ScriptButton(x, y, label){
             this.x = x;
             this.y = y;
-            this.type = type;
-            this.time = time;
+            this.label = label;
 
             this.width = 150;
             this.height = 50;
@@ -24,11 +23,7 @@ define(
             temp_graphics.font = "18px Colibri";
             temp_graphics.textAlign = "center";
 
-            if(type != "Jump"){
-                temp_graphics.fillText(type + ": " + time + " seconds", this.image.width/2, this.image.height/2);
-            }else{
-                temp_graphics.fillText(type, this.image.width/2, this.image.height/2);
-            }
+            temp_graphics.fillText(label, this.image.width/2, this.image.height/2);
         }
 
         ScriptButton.prototype = {

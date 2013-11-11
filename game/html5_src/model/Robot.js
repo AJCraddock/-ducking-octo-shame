@@ -7,6 +7,8 @@ define(
         function Robot(x, y){
             GameObject.prototype.constructor.call(this, x, y, 50, 35);
 
+            this.instructions = new Array();
+
             // create the default image for an object
             var temp_graphics = this.image.getContext('2d');
             temp_graphics.fillStyle = "#006060";

@@ -3,10 +3,11 @@ define(
     //module definition
     function(){
         //constructor
-        function Map(player, game_objects, background){
+        function Map(player, robot, game_objects, background){
             this.death_height = 750;
 
             this.player = player;
+            this.robot = robot;
             this.objects = game_objects;
             this.background = background;
 

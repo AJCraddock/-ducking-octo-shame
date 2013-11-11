@@ -21,10 +21,10 @@ define(
 
             this.script_buttons = new Array();
 
-            this.script_buttons.push(new ScriptButton(100, 500, "Move >", 1));
-            this.script_buttons.push(new ScriptButton(252, 500, "Move <", 1));
-            this.script_buttons.push(new ScriptButton(404, 500, "Jump"));
-            this.script_buttons.push(new ScriptButton(556, 500, "Wait", 1));
+            this.script_buttons.push(new ScriptButton(252, 500, "[a]: Move <"));
+            this.script_buttons.push(new ScriptButton(100, 500, "[d]: Move >"));
+            this.script_buttons.push(new ScriptButton(404, 500, "[Space]: Jump"));
+            this.script_buttons.push(new ScriptButton(556, 500, "[w]: Wait"));
 
             this.mode = "game_running";
         }
@@ -141,7 +141,7 @@ define(
 
             robot_interface_mode: function(){
                 // handle events
-                var done = this.current_controller.handle_input();
+                var done = this.current_controller.handle_input(this.map.robot);
                 if(done){
                     this.mode = "game_running";
                     this.current_controller.reset();

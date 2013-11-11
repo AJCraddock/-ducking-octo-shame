@@ -18,6 +18,7 @@ define(
             // GameObjects is a list of dictionaries representing game objects
             var json_game_objects = map_json.GameObjects;
             var game_objects = new Array();
+            var robot;
 
             for(var i = 0; i < json_game_objects.length; i++){
                 var game_object = json_game_objects[i];
@@ -43,7 +44,8 @@ define(
                         game_objects.push(new DangerousMechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals, null));
                         break;
                     case 'Robot':
-                        game_objects.push(new Robot(game_object.x, game_object.y));
+                        robot = new Robot(game_object.x, game_object.y);
+                        game_objects.push(robot);
                         break;
                 }
             }
@@ -57,7 +59,7 @@ define(
             temp_graphics.fillStyle = map_json.Background;
             temp_graphics.fillRect(0, 0, background.width, background.height);
             
-            return new Map(player, game_objects, background);
+            return new Map(player, robot, game_objects, background);
         };
 
         //superclass definition
