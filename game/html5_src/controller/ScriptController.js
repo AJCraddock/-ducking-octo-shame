@@ -17,11 +17,15 @@ define(
             }
 
             if(this.keys_down.A){
-                robot.instructions.push({"type":'backward', "time":1});
+                robot.instructions.push("backward");
             }else if(this.keys_down.D){
-                robot.instructions.push({"type":'forward', "time":1});
+                robot.instructions.push("forward");
             }else if(this.keys_down.Space){
-                robot.instructions.push({"type":'jump'});
+                robot.instructions.push("jump");
+            }else if(this.keys_down.W){
+                robot.instructions.push("wait");
+            }else if(this.keys_down.Backspace){
+                robot.instructions.pop();
             }
 
             return false;
