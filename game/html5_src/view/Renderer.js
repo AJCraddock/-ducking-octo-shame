@@ -36,7 +36,7 @@ define(
                     this.clear_robot_interface();
                 }
 
-                if(this.old_touching_robot = true){
+                if(this.old_touching_robot == true){
                     this.v_graphics.clearRect(0, 0, this.v_canvas.width, this.v_canvas.height);
                 }
 
