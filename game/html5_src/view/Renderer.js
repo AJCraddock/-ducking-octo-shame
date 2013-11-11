@@ -36,7 +36,7 @@ define(
                     this.clear_robot_interface();
                 }
 
-                if(this.old_touching_robot == true){
+                if(this.old_touching_robot){
                     this.v_graphics.clearRect(0, 0, this.v_canvas.width, this.v_canvas.height);
                 }
 
@@ -54,6 +54,7 @@ define(
                         this.victory_render();
                         break;
                     case "robot_interface":
+                        this.game_running_render();
                         this.robot_interface_render();
                         break;
                 }
@@ -101,7 +102,7 @@ define(
                     }
                 }
 
-                if(map.player.touching_robot){
+                if(this.engine.mode == "game_running" && map.player.touching_robot){
                     this.v_graphics.fillStyle = "#FFFFFF";
                     this.v_graphics.font = "18px Colibri";
                     this.v_graphics.textAlign = "center";
