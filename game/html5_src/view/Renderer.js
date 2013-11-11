@@ -33,7 +33,7 @@ define(
                 this.main_window.requestAnimationFrame(function(){return renderer.render()});
 
                 if(this.old_mode == "robot_interface" && this.engine.mode != "robot_interface"){
-                    this.clear_robot_interface();
+                    this.v_graphics.clearRect(0, 0, this.v_canvas.width, this.v_canvas.height);
                 }
 
                 if(this.old_touching_robot){
@@ -129,6 +129,32 @@ define(
             },
 
             robot_interface_render: function(){
+                var robot = this.engine.map.robot;
+
+                // draw the string of instructions to the screen
+                var instruction_str = "";
+                for(var i = 0; i < robot.instructions.length; i++){
+                    curr_instruction = robot.instructions[i];
+                    if(curr_instruction.type == 'jump'){
+                        if(i > 0){
+                            instruction_str += "; " + curr_instruction.type;
+                        }else{
+                            instruction_str += curr_instruction.type;
+                        }
+                    }else{
+                        if(i > 0){
+                            instruction_str += "; " + curr_instruction.type + ": " + curr_instruction.time;
+                        }else{
+                            instruction_str += curr_instruction.type + ": " + curr_instruction.time;
+                        }
+                    }
+                }
+                this.v_graphics.fillStyle = "#FFFFFF";
+                this.v_graphics.font = "12px Colibri";
+                this.v_graphics.textAlign = "center";
+                this.v_graphics.fillText(instruction_str, this.v_canvas.width/2, this.v_canvas.height/2);
+
+                // draw the instruction buttons
                 for(var i = 0; i < this.engine.script_buttons.length; i++){
                     var script_button = this.engine.script_buttons[i];
                     script_button.clear_old(this.v_graphics);

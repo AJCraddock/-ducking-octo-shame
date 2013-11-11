@@ -23,6 +23,10 @@ define(
             player.touching_robot = true;
         };
 
+        Robot.prototype.update = function(){
+            
+        };
+
         return Robot;
     }
 );

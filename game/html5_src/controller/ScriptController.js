@@ -16,16 +16,35 @@ define(
                 return true;
             }
 
+            var last_instruction = robot.instructions[robot.instructions.length-1];
+
             if(this.keys_down.A){
-                robot.instructions.push("backward");
+                if(last_instruction != null && last_instruction.type == 'backward'){
+                    last_instruction.time += 1;
+                }else{
+                    robot.instructions.push({"type":'backward', "time":1});
+                }
+                this.keys_down.A = false;
             }else if(this.keys_down.D){
-                robot.instructions.push("forward");
+                if(last_instruction != null && last_instruction.type == 'forward'){
+                    last_instruction.time += 1;
+                }else{
+                    robot.instructions.push({"type":'forward', "time":1});
+                }
+                this.keys_down.D = false;
             }else if(this.keys_down.Space){
-                robot.instructions.push("jump");
+                robot.instructions.push({"type":'jump'});
+                this.keys_down.Space = false;
             }else if(this.keys_down.W){
-                robot.instructions.push("wait");
+                if(last_instruction != null && last_instruction.type == 'wait'){
+                    last_instruction.time += 1;
+                }else{
+                    robot.instructions.push({"type":'wait', "time":1});
+                }
+                this.keys_down.W = false;
             }else if(this.keys_down.Backspace){
                 robot.instructions.pop();
+                this.keys_down.Backspace = false;
             }
 
             return false;
