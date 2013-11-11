@@ -146,7 +146,6 @@ define(
                     script_button.clear_old(this.v_graphics);
                 }
             }
-
         };
 
         return Renderer;
