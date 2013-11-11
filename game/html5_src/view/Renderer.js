@@ -20,6 +20,7 @@ define(
             this.b_graphics.drawImage(engine.map.background, 0, 0);
 
             this.old_mode = this.engine.mode;
+            this.old_touching_robot = false;
 
             this.curr_map = this.engine.map;
         }
@@ -35,6 +36,11 @@ define(
                     this.clear_robot_interface();
                 }
 
+                if(this.old_touching_robot = true){
+                    this.v_graphics.clearRect(0, 0, this.v_canvas.width, this.v_canvas.height);
+                }
+
+                this.old_touching_robot = this.engine.map.player.touching_robot;
                 this.old_mode = this.engine.mode;
 
                 switch(this.engine.mode){
@@ -96,8 +102,10 @@ define(
                 }
 
                 if(map.player.touching_robot){
-                    this.v_graphics.fillStyle = "#0000FF";
+                    this.v_graphics.fillStyle = "#FFFFFF";
                     this.v_graphics.font = "18px Colibri";
+                    this.v_graphics.textAlign = "center";
+                    this.v_graphics.fillText("Press E to command Bill.", this.v_canvas.width/2, this.v_canvas.height/2);
                 }
             },
 
