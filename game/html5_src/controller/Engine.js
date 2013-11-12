@@ -53,12 +53,21 @@ define(
             game_running_mode: function(){
                 var player = this.map.player;
                 var robot = this.map.robot;
-                this.current_controller.handle_input(this.map.player);
-                
+
+                this.current_controller.handle_input(player);
+
                 // update player
                 this.gravity(player);
                 this.gravity(robot);
-                player.update();
+
+                var player_dx_zero = 0;
+                var player_dy_zero = 0;
+                if(player.grounding_object != null){
+                    player_dx_zero = player.grounding_object.dx;
+                    player_dy_zero = player.grounding_object.dy;
+                }
+
+                player.update(player_dx_zero, player_dy_zero);
 
                 // update object screen positions in map
                 // may need to change this to accomodate moving objects
@@ -73,23 +82,13 @@ define(
                     o.update();
                 }
 
-                if(player.grounding_object != null){
-                    player.x += player.grounding_object.dx;
-                    player.y += player.grounding_object.dy;
-                }
-
                 if(robot.grounding_object != null){
                     robot.x += robot.grounding_object.dx;
                     robot.y += robot.grounding_object.dy;
-
-                    if(player.grounding_object == robot){
-                        player.x += robot.grounding_object.dx;
-                        player.y += robot.grounding_object.dy;
-                    }
                 }
 
                 player.on_ground = false;
-                player.grounding_object = null;
+                //player.grounding_object = null;
                 player.touching_robot = false;
 
                 robot.on_ground = false;

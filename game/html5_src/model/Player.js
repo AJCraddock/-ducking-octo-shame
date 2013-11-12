@@ -28,9 +28,9 @@ define(
         Player.prototype = {
             constructor: Player,
 
-            update: function(){
-                this.x += this.dx;
-                this.y += this.dy;
+            update: function(dx_zero, dy_zero){
+                this.x += dx_zero + this.dx;
+                this.y += dy_zero + this.dy;
             },
 
             clear_old: function(graphics){
