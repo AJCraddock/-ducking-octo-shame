@@ -8,13 +8,15 @@ define(
             GameObject.prototype.constructor.call(this, x, y, 50, 35);
 
             this.instructions = new Array();
-            this.instruction_index = 0;
 
             this.dx = 0;
             this.dy = 0;
 
             this.MAX_DX = 5;
             this.MAX_DY = 10;
+
+            this.on_ground = false;
+            this.grounding_object = null;
 
             // create the default image for an object
             var temp_graphics = this.image.getContext('2d');
@@ -31,15 +33,19 @@ define(
         };
 
         Robot.prototype.update = function(){
-            if(this.instruction_index < this.instructions.length){
-                var curr_instr = this.instructions[this.instruction_index];
+
+            // reset the robots speed
+            this.dx = 0;
+            
+            if(this.instructions.length > 0){
+                var curr_instr = this.instructions[0];
 
                 switch(curr_instr.type){
                     case 'backward':
                         this.dx = 0 - this.MAX_DX;
                         
                         if(curr_instr.time <= 0){
-                            this.instruction_index++;
+                            this.instructions.splice(0, 1);
                         }else{
                             curr_instr.time -= 1;
                         }
@@ -48,28 +54,31 @@ define(
                         this.dx = this.MAX_DX;
 
                         if(curr_instr.time <= 0){
-                            this.instruction_index++;
+                            this.instructions.splice(0, 1);
                         }else{
                             curr_instr.time -= 1;
                         }
                         break;
                     case 'jump':
-                        this.instruction_index++;
+                        if (this.on_ground){
+                            this.dy = 0-this.MAX_DY;
+                            this.on_ground = false;
+                        }
+                        
+                        this.instructions.splice(0, 1);
                         break;
                     case 'wait':
                         if(curr_instr.time <= 0){
-                            this.instruction_index++;
+                            this.instructions.splice(0, 1);
                         }else{
                             curr_instr.time -= 1;
                         }
                         break;
                 }
-
-                this.x += this.dx;
-                this.y += this.dy;
-
-                this.dx = 0;
             }
+
+            this.x += this.dx;
+            this.y += this.dy;
         };
 
         return Robot;

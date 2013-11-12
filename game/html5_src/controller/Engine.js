@@ -57,6 +57,7 @@ define(
                 
                 // update player
                 this.gravity(player);
+                this.gravity(robot);
                 player.update();
 
                 // update object screen positions in map
@@ -77,16 +78,39 @@ define(
                     player.y += player.grounding_object.dy;
                 }
 
+                if(robot.grounding_object != null){
+                    robot.x += robot.grounding_object.dx;
+                    robot.y += robot.grounding_object.dy;
+
+                    if(player.grounding_object == robot){
+                        player.x += robot.grounding_object.dx;
+                        player.y += robot.grounding_object.dy;
+                    }
+                }
+
                 player.on_ground = false;
                 player.grounding_object = null;
                 player.touching_robot = false;
 
-                // check for player collisions
+                robot.on_ground = false;
+                robot.grounding_object = null;
+
+                // check for player and robot collisions
                 for(var i = 0; i < nearby_objects.length; i++){
                     var o = nearby_objects[i];
-                    var collision = this.check_player_collision(o);
+                    
+                    // check player collision
+                    var collision = this.check_collision(player, o);
                     if(collision){
                         o.handle_player_collision(player);
+                    }
+
+                    // check robot collision
+                    if(o != robot){
+                        collision = this.check_collision(robot, o);
+                        if(collision){
+                            o.handle_player_collision(robot);
+                        }
                     }
                 }
 
@@ -150,15 +174,13 @@ define(
                 }
             },
 
-            check_player_collision: function(object){
+            check_collision: function(o1, o2){
                 //check if there is no overlap on x axis.
-                if (this.map.player.x+this.map.player.width < object.x || 
-                    this.map.player.x > object.x+object.width){
+                if (o1.x+o1.width < o2.x || o1.x > o2.x+o2.width){
                     return false;
                 }
                 //check if there is no overlap on y axis.
-                else if(this.map.player.y+this.map.player.height < object.y || 
-                    this.map.player.y > object.y+object.height){
+                else if(o1.y+o1.height < o2.y || o1.y > o2.y+o2.height){
                     return false;
                 }
                 //if both checks fail, both axes overlap and there is a collision.
