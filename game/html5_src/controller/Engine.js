@@ -25,6 +25,8 @@ define(
             this.script_buttons.push(new ScriptButton(252, 500, "[d]: Move >"));
             this.script_buttons.push(new ScriptButton(404, 500, "[Space]: Jump"));
             this.script_buttons.push(new ScriptButton(556, 500, "[w]: Wait"));
+            this.script_buttons.push(new ScriptButton(100, 551, "[z]: Move <<"));
+            this.script_buttons.push(new ScriptButton(100, 551, "[c]: Move >>"));
 
             this.mode = "game_running";
         }

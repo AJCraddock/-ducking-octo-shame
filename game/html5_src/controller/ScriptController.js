@@ -45,6 +45,12 @@ define(
             }else if(this.keys_down.Backspace){
                 robot.instructions.pop();
                 this.keys_down.Backspace = false;
+            }else if(this.keys_down.Z){
+                // issue command to move horse backward constantly
+                this.keys_down.Z = false;
+            }else if(this.keys_down.C){
+                // issue command to move horse forward constantly
+                this.keys_down.C = false;
             }
 
             return false;
