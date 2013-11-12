@@ -88,11 +88,9 @@ define(
                 }
 
                 player.on_ground = false;
-                //player.grounding_object = null;
                 player.touching_robot = false;
 
                 robot.on_ground = false;
-                robot.grounding_object = null;
 
                 // check for player and robot collisions
                 for(var i = 0; i < nearby_objects.length; i++){
