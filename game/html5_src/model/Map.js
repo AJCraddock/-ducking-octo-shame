@@ -22,6 +22,8 @@ define(
             this.player_index = Math.floor(this.player.x/800);
             this.screens[this.player_index].push(this.player);
 
+            this.robot_index = Math.floor(this.robot.x/800);
+
             // add objects to a screen based on their position
             for(var i = 0; i < this.objects.length; i++){
                 var object = this.objects[i];
@@ -45,6 +47,18 @@ define(
                     this.screens[new_player_index].push(this.player);
                     // update the player_index
                     this.player_index = new_player_index;
+                }
+
+                var new_robot_index = Math.floor(this.robot.x/800);
+                if(this.robot_index != new_robot_index){
+                    // remove the robot from its old screen
+                    var s = this.screens[this.robot_index];
+                    s.splice(s.indexOf(this.robot), 1);
+
+                    // add the robot to its new screen
+                    this.screens[new_robot_index].push(this.robot);
+                    // update the robot index
+                    this.robot_index = new_robot_index;
                 }
             },
 

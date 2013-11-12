@@ -52,6 +52,7 @@ define(
 
             game_running_mode: function(){
                 var player = this.map.player;
+                var robot = this.map.robot;
                 this.current_controller.handle_input(this.map.player);
                 
                 // update player
