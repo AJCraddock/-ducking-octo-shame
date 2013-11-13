@@ -152,6 +152,11 @@ define(
                 this.v_graphics.fillStyle = "#FFFFFF";
                 this.v_graphics.font = "12px Colibri";
                 this.v_graphics.textAlign = "center";
+                
+                //draw the current standing order
+                this.v_graphics.fillText("Standing order: " + robot.standing_order, this.v_canvas.width/2, this.v_canvas.height/2 - 30);
+
+                // draw the instruction queue
                 this.v_graphics.fillText(instruction_str, this.v_canvas.width/2, this.v_canvas.height/2);
 
                 // draw the instruction buttons
