@@ -26,7 +26,9 @@ define(
             Mechanism.prototype.handle_player_collision.call(this, player);
             player.dead = true;
         };
-
+  
+        
+       
         return DangerousMechanism;
     }
 );

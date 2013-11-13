@@ -10,9 +10,11 @@ define(
             this.instructions = new Array();
             this.standing_order = "standby";
 
+            this.initial_x = x; 
+            this.initial_y = y;
             this.dx = 0;
             this.dy = 0;
-
+            this.fall_death = false;
             this.MAX_DX = 5;
             this.MAX_DY = 10;
 
@@ -44,6 +46,14 @@ define(
                 this.dx = this.MAX_DX;
             }
             
+
+            this.dx = 0;
+            if (this.fall_death){
+                this.x = this.initial_x;
+                this.y = this.initial_y;
+                this.instructions = [];
+                this.fall_death = false;
+            }
             if(this.instructions.length > 0){
                 var curr_instr = this.instructions[0];
 

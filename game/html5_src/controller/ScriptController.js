@@ -42,8 +42,12 @@ define(
                     robot.instructions.push({"type":'wait', "time":1});
                 }
                 this.keys_down.W = false;
-            }else if(this.keys_down.Backspace){
+            }else if(this.keys_down.Backspace){             
+                if(last_instruction.time == 1 || last_instruction.type== 'jump'){                
                 robot.instructions.pop();
+                }else{
+                last_instruction.time -= 1;
+                }
                 this.keys_down.Backspace = false;
             }else if(this.keys_down.Z){
                 // issue command to move horse backward constantly

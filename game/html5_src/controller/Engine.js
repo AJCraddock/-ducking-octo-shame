@@ -91,8 +91,11 @@ define(
                 }
 
                 player.on_ground = false;
+
+                //player.grounding_object = null;
                 player.touching_robot = false;
 
+                robot.grounding_object = null;                
                 robot.on_ground = false;
 
                 // check for player and robot collisions
@@ -117,6 +120,9 @@ define(
                 //check for player victory and death
                 if (player.y > this.map.death_height){
                     player.dead = true;
+                }
+                if (robot.y > this.map.death_height){
+                    robot.fall_death = true;
                 }
 
                 if (player.dead){
