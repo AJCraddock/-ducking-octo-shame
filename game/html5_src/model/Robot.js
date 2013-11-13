@@ -8,6 +8,7 @@ define(
             GameObject.prototype.constructor.call(this, x, y, 50, 35);
 
             this.instructions = new Array();
+            this.standing_order = "standby";
 
             this.dx = 0;
             this.dy = 0;
@@ -35,7 +36,13 @@ define(
         Robot.prototype.update = function(){
 
             // reset the robots speed
-            this.dx = 0;
+            if(this.standing_order == "standby"){
+                this.dx = 0;
+            }else if(this.standing_order == "backward"){
+                this.dx = 0-this.MAX_DY;
+            }else if(this.standing_order == "forward"){
+                this.dx = this.MAX_DX;
+            }
             
             if(this.instructions.length > 0){
                 var curr_instr = this.instructions[0];

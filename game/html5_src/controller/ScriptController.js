@@ -47,10 +47,15 @@ define(
                 this.keys_down.Backspace = false;
             }else if(this.keys_down.Z){
                 // issue command to move horse backward constantly
+                robot.standing_order = "backward";
                 this.keys_down.Z = false;
             }else if(this.keys_down.C){
                 // issue command to move horse forward constantly
+                robot.standing_order = "forward";
                 this.keys_down.C = false;
+            }else if(this.keys_down.X){
+                robot.standing_order = "standby";
+                this.keys_down.X = false;
             }
 
             return false;
