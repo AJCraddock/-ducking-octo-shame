@@ -39,7 +39,11 @@ define(
                 }
 
                 if(this.old_touching_robot){
-                    this.u_graphics.clearRect(0, 0, this.v_canvas.width, this.v_canvas.height);
+                    this.u_graphics.clearRect(0, 0, this.u_canvas.width, this.u_canvas.height);
+                }
+
+                if(this.old_mode == "game_over" || this.old_mode == "victory"){
+                    this.u_graphics.clearRect(0, 0, this.u_canvas.width, this.u_canvas.height);
                 }
 
                 this.old_touching_robot = this.engine.map.player.touching_robot;
@@ -112,21 +116,21 @@ define(
             },
 
             game_over_render: function(){
-                this.v_graphics.fillStyle = "#0000FF";
-                this.v_graphics.font = "100px Colibri";
-                this.v_graphics.textAlign = "center";
-                this.v_graphics.fillText("YOU DIED", this.v_canvas.width/2, this.v_canvas.height/2);
-                this.v_graphics.font = "30px Colibri";
-                this.v_graphics.fillText("Press [Space] to continue...", this.v_canvas.width/2, (this.v_canvas.height/2)+30);
+                this.u_graphics.fillStyle = "#0000FF";
+                this.u_graphics.font = "100px Colibri";
+                this.u_graphics.textAlign = "center";
+                this.u_graphics.fillText("YOU DIED", this.u_canvas.width/2, this.u_canvas.height/2);
+                this.u_graphics.font = "30px Colibri";
+                this.u_graphics.fillText("Press [Space] to continue...", this.u_canvas.width/2, (this.u_canvas.height/2)+30);
             },
 
             victory_render: function(){
-                this.v_graphics.fillStyle = "#0000FF";
-                this.v_graphics.font = "80px Colibri";
-                this.v_graphics.textAlign = "center";
-                this.v_graphics.fillText("LEVEL COMPLETE!", this.v_canvas.width/2, this.v_canvas.height/2);
-                this.v_graphics.font = "30px Colibri";
-                this.v_graphics.fillText("Press [Space] to continue...", this.v_canvas.width/2, (this.v_canvas.height/2)+30);
+                this.u_graphics.fillStyle = "#0000FF";
+                this.u_graphics.font = "80px Colibri";
+                this.u_graphics.textAlign = "center";
+                this.u_graphics.fillText("LEVEL COMPLETE!", this.u_canvas.width/2, this.u_canvas.height/2);
+                this.u_graphics.font = "30px Colibri";
+                this.u_graphics.fillText("Press [Space] to continue...", this.u_canvas.width/2, (this.u_canvas.height/2)+30);
             },
 
             robot_interface_render: function(){
