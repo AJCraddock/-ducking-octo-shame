@@ -63,6 +63,27 @@ define(
                 this.gravity(player);
                 this.gravity(robot);
 
+                // get objects that are close to player
+                var nearby_objects = this.map.get_nearby_objects();
+
+                var robot_dx_zero = 0;
+                var robot_dy_zero = 0;
+
+                if(robot.grounding_object != null){
+                    robot_dx_zero = robot.grounding_object.dx;
+                    robot_dy_zero = robot.grounding_object.dy;
+                }
+
+                //update game objects
+                for(var i = 0; i < nearby_objects.length; i++){
+                    var o = nearby_objects[i];
+                    if(o == robot){
+                        o.update(robot_dx_zero, robot_dy_zero);
+                    }else{
+                        o.update();
+                    }
+                }
+
                 var player_dx_zero = 0;
                 var player_dy_zero = 0;
                 if(player.grounding_object != null){
@@ -75,20 +96,6 @@ define(
                 // update object screen positions in map
                 // may need to change this to accomodate moving objects
                 this.map.update_screens();
-
-                // get objects that are close to player
-                var nearby_objects = this.map.get_nearby_objects();
-
-                //update game objects
-                for(var i = 0; i < nearby_objects.length; i++){
-                    var o = nearby_objects[i];
-                    o.update();
-                }
-
-                if(robot.grounding_object != null){
-                    robot.x += robot.grounding_object.dx;
-                    robot.y += robot.grounding_object.dy;
-                }
 
                 player.on_ground = false;
 

@@ -35,15 +35,19 @@ define(
             player.touching_robot = true;
         };
 
-        Robot.prototype.update = function(){
+        Robot.prototype.update = function(robot_dx_zero, robot_dy_zero){
+
+            if(this.on_ground){
+                this.dy = robot_dy_zero;
+            }
 
             // reset the robots speed
             if(this.standing_order == "standby"){
-                this.dx = 0;
+                this.dx = robot_dx_zero;
             }else if(this.standing_order == "backward"){
-                this.dx = 0-this.MAX_DY;
+                this.dx = robot_dx_zero - this.MAX_DX;
             }else if(this.standing_order == "forward"){
-                this.dx = this.MAX_DX;
+                this.dx = robot_dx_zero + this.MAX_DX;
             }
             
 
@@ -59,7 +63,7 @@ define(
 
                 switch(curr_instr.type){
                     case 'backward':
-                        this.dx = 0 - this.MAX_DX;
+                        this.dx = robot_dx_zero - this.MAX_DX;
                         
                         if(curr_instr.time <= 0){
                             this.instructions.splice(0, 1);
@@ -68,7 +72,7 @@ define(
                         }
                         break;
                     case 'forward':
-                        this.dx = this.MAX_DX;
+                        this.dx = robot_dx_zero + this.MAX_DX;
 
                         if(curr_instr.time <= 0){
                             this.instructions.splice(0, 1);
@@ -78,7 +82,7 @@ define(
                         break;
                     case 'jump':
                         if (this.on_ground){
-                            this.dy = 0-this.MAX_DY;
+                            this.dy = robot_dy_zero - this.MAX_DY;
                             this.on_ground = false;
                         }
                         
