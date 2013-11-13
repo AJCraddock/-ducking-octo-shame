@@ -35,11 +35,15 @@ define(
 
         Robot.prototype.update = function(robot_dx_zero, robot_dy_zero){
 
+            if(this.on_ground){
+                this.dy = robot_dy_zero;
+            }
+
             // reset the robots speed
             if(this.standing_order == "standby"){
                 this.dx = robot_dx_zero;
             }else if(this.standing_order == "backward"){
-                this.dx = robot_dx_zero - this.MAX_DY;
+                this.dx = robot_dx_zero - this.MAX_DX;
             }else if(this.standing_order == "forward"){
                 this.dx = robot_dx_zero + this.MAX_DX;
             }
