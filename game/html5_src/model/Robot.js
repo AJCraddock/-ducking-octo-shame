@@ -51,6 +51,7 @@ define(
             }
             
             if (this.fall_death){
+                this.standing_order = "standby";
                 this.x = this.initial_x;
                 this.y = this.initial_y;
                 this.instructions = [];
