@@ -144,7 +144,7 @@ define(
                     this.current_controller = this.press_anything_controller;
                 }
 
-                if(player.touching_robot && player.interacting){
+                if(player.interacting){
                     this.mode = "robot_interface";
                     this.current_controller.reset();
                     this.current_controller = this.script_controller;

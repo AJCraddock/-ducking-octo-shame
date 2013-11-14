@@ -38,7 +38,7 @@ define(
                     this.u_graphics.clearRect(0, 0, this.u_canvas.width, this.u_canvas.height);
                 }
 
-                if(this.old_touching_robot){
+                if(this.old_touching_robot || this.engine.mode == "robot_interface"){
                     this.u_graphics.clearRect(0, 0, this.u_canvas.width, this.u_canvas.height);
                 }
 
@@ -111,7 +111,7 @@ define(
                     this.u_graphics.fillStyle = "#FFFFFF";
                     this.u_graphics.font = "18px Colibri";
                     this.u_graphics.textAlign = "center";
-                    this.u_graphics.fillText("Press E to command Bill.", this.u_canvas.width/2, this.u_canvas.height/2);
+                    this.u_graphics.fillText("Press E from anywhere to command Bill.", this.u_canvas.width/2, this.u_canvas.height/2);
                 }
             },
 
