@@ -50,8 +50,6 @@ define(
                 this.dx = robot_dx_zero + this.MAX_DX;
             }
             
-
-            this.dx = 0;
             if (this.fall_death){
                 this.x = this.initial_x;
                 this.y = this.initial_y;
