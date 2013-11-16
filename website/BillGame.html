@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Bill Game</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script data-main="main" src="require.js"></script>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header">
+			<h1 id="name">Bill Game</h1>
+		</div>
+		
+		<div class="menu">
+			<ul id="nav">
+				<li><a href="BillGame.html"><b>The Game &#187;</b></a><br></li>
+				<li><a href="HighScores.php">High Scores &#187;</a><br></li>
+				<li><a href="TheProcess.html">The Process &#187;</a><br></li>
+				<li><a href="AboutUs.html">About Us &#187;</a></li>
+			</ul>
+		</div>
+
+		<div class="gamecontent">
+			<canvas id="main_canvas" width="800" height="600">
+			</canvas>
+			<canvas id="fore_canvas" width="800" height="600">
+			</canvas>
+			<canvas id="volatile_canvas" width="800" height="600">
+			</canvas>
+			<canvas id="ui_canvas" width="800" height="600" 
+			style="padding:0px; border:0px; margin:0px; z-index:1; position:absolute;
+			top:0px; left:0px;">
+			</canvas>
+		</div>
+
+		<div id="footer">
+			Copyright  Bill Game Awesome Guy
+		</div>
+	</div>
+</body>
+</html>
