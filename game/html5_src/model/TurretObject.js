@@ -9,7 +9,7 @@ define(
             this.x = x;
             this.y = y;
             this.width = 28;
-            this.height = 28;
+            this.height = 27;
         }
 
         TurretObject.prototype = GameObject.prototype;

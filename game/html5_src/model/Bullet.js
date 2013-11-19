@@ -1,6 +1,6 @@
 define(
     //dependencies
-    ['model/GameObject'],
+    ['model/DangerousMechanism'],
     
     //module definition
     function(){
@@ -8,7 +8,7 @@ define(
         function Bullet(x, y){
             this.x = x;
             this.y = y;
-            this.width = 5;
+            this.width = 6;
             this.height = 5;
             this.Max_Speed = 3
             var x_vector = model.player.x - this.x;
@@ -20,7 +20,7 @@ define(
             this.dy *= -1;
         }
 
-        Bullet.prototype = GameObject.prototype;
+        Bullet.prototype = DangerousMechanism.prototype;
 
         Bullet.prototype.constructor = Bullet;
 

@@ -50,6 +50,7 @@ define(
                     case 'Turret':
                         turret = new TurretObject(game_object.x, game_object.y);
                         game_objects.push(turret);
+                        
                         break;
                 }
             }
