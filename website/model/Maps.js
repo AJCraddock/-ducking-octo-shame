@@ -17,6 +17,7 @@ define(
                     {"type":"GameObject", "x":2425, "y":525, "width":600, "height":10},
                     {"type":"GameObject", "x":3030, "y":525, "width":400, "height":10},
                     {"type":"Robot", "x":80, "y":90},
+                    {"type":"Turret", "x":150, "y":525},
                 ],
                 "Background": '#000000'
             },

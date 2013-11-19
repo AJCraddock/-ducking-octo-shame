@@ -3,7 +3,7 @@ define(
     ['model/GameObject'],
     
     //module definition
-    function(){
+    function(GameObject){
         //constructor
         function TurretObject(x, y){
             this.x = x;
@@ -19,14 +19,20 @@ define(
         TurretObject.prototype.draw = function(graphics, screen_x){
             graphics.fillStyle = "#FF0000";
             var object_draw_x = this.x-screen_x;
-            graphics.fillRect(object_draw_x, this.y, this.width, this.height);                
-            
+            graphics.fillRect(object_draw_x, this.y, this.width, this.height);                 
             this.last_render_x = object_draw_x;
             this.last_render_y = this.y;
-        };
-        function Shoot(graphics, x){
+        },
+        TurretObject.prototype.update = function(){
+             this.shot_timer += 1;
+             if(this.shot_timer == 60){
+                   shoot();
+         }       
+        },
+        function Shoot(){
             new Bullet(this.x-10, this.y-10);
-        };
+        },
+         
         return TurretObject;
     }
 );

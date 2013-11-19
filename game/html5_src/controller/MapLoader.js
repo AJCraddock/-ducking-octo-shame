@@ -2,10 +2,10 @@ define(
     //dependencies
     ['model/Map', 'model/Maps', 'model/Player', 'model/GameObject', 
     'model/GoalPlatform', 'model/Mechanism', 'model/DangerousGameObject',
-    'model/DangerousMechanism', 'model/Robot'],
+    'model/DangerousMechanism', 'model/Robot', 'model/TurretObject'],
 
     //module definition
-    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism, DangerousGameObject, DangerousMechanism, Robot){
+    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism, DangerousGameObject, DangerousMechanism, Robot, TurretObject){
 
         //constructor
         function MapLoader(){
@@ -46,6 +46,10 @@ define(
                     case 'Robot':
                         robot = new Robot(game_object.x, game_object.y);
                         game_objects.push(robot);
+                        break;
+                    case 'Turret':
+                        turret = new TurretObject(game_object.x, game_object.y);
+                        game_objects.push(turret);
                         break;
                 }
             }

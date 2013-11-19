@@ -23,10 +23,16 @@ define(
             
             this.last_render_x = object_draw_x;
             this.last_render_y = this.y;
-        };
-        function Shoot(graphics, x){
+        },
+        function Shoot(){
             new Bullet(this.x-10, this.y-10);
-        };
+        },
+        update: function (){
+         this.shot_timer += 1;
+         if(this.shot_timer == 60){
+               shoot();
+         }       
+        },
         return TurretObject;
     }
 );
