@@ -1,10 +1,10 @@
 define(
     // dependencies
-    ['model/GameObject'],
+    ['model/GameObject', 'model/Resources'],
 
     // class definition
-    function(GameObject){
-        function Robot(x, y, sprite_sheet){
+    function(GameObject, Resources){
+        function Robot(x, y){
             GameObject.prototype.constructor.call(this, x, y, 50, 35);
 
             this.instructions = new Array();
@@ -21,42 +21,13 @@ define(
             this.on_ground = false;
             this.grounding_object = null;
 
-            this.forward_sprites = new Array();
-            this.backward_sprites = new Array();
-            this.jumping_sprites = new Array();
-
-            // var sprite_sheet = new Image();
-            // sprite_sheet.src = '../resources/images/bill_sprite_sheet.png';
-            sprite_sheet.onload = function(){
-                var sprite_sheet_canvas = document.createElement('canvas');
-                sprite_sheet_canvas.width = 3072;
-                sprite_sheet_canvas.height = 1024;
-                var ctx = sprite_sheet_canvas.getContext('2d');
-                ctx.drawImage(sprite_sheet, 0, 0);
-                var images = new Array();
-                var frame_width = 3072/24;
-                var frame_height = 1024/8;
-
-                for(var i = 0; i < 24; i++){
-                    for(var j = 0; j < 8; j++){
-                        images.push(ctx.getImageData(frame_width*i, frame_height*j, frame_width, frame_height));
-                    }
-                }
-
-                for(var i = 0; i < 12; i++){
-                    this.backward_sprites.push(images[i]);
-                }
-
-                for(var i = 96; i < 96+12; i++){
-                    this.forward_sprites.push(images[i]);
-                }
-            };
+            this.forward_sprites = Resources.robot_sprites.forward;
+            this.backward_sprites = Resources.robot_sprites.backward;
+            this.jumping_sprites = Resources.robot_sprites.jump;            
             
             this.curr_sprite_array = this.forward_sprites;
             this.curr_sprite_index = 0;
             this.image = this.curr_sprite_array[this.curr_sprite_index];
-
-            console.log(this.image);
 
             // var temp_graphics = this.image.getContext('2d');
             // temp_graphics.fillStyle = "#006060";
@@ -84,11 +55,11 @@ define(
             }else if(this.standing_order == "backward"){
                 this.dx = robot_dx_zero - this.MAX_DX;
                 this.curr_sprite_array = this.backward_sprites;
-                this.curr_sprite_index = (curr_sprite_index+1)%curr_sprite_array.length;
+                this.curr_sprite_index = (this.curr_sprite_index+1)%this.curr_sprite_array.length;
             }else if(this.standing_order == "forward"){
                 this.dx = robot_dx_zero + this.MAX_DX;
                 this.curr_sprite_array = this.forward_sprites;
-                this.curr_sprite_index = (curr_sprite_index+1)%curr_sprite_array.length;
+                this.curr_sprite_index = (this.curr_sprite_index+1)%this.curr_sprite_array.length;
             }
             
             if (this.fall_death){

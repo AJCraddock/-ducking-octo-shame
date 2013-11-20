@@ -44,9 +44,7 @@ define(
                         game_objects.push(new DangerousMechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals, null));
                         break;
                     case 'Robot':
-                        var sprite_sheet = new Image();
-                        sprite_sheet.src = '../resources/images/bill_sprite_sheet.png';
-                        robot = new Robot(game_object.x, game_object.y, sprite_sheet);
+                        robot = new Robot(game_object.x, game_object.y);
                         game_objects.push(robot);
                         break;
                 }

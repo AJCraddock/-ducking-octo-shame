@@ -7,7 +7,7 @@ define(
             this.y = y;
             this.dx = 0;
             this.dy = 0;
-            this.ddx = 0.12;
+            this.ddx = 0.10;
             this.MAX_DX = 5;
             this.MAX_DY = 10;
             this.width = 25;
