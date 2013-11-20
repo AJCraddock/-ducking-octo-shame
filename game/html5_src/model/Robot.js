@@ -78,7 +78,6 @@ define(
             // reset the robots speed
             if(this.standing_order == "standby"){
                 this.dx = robot_dx_zero;
-                this.curr_sprite_index = 0;
             }else if(this.standing_order == "backward"){
                 this.dx = robot_dx_zero - this.MAX_DX;
             }else if(this.standing_order == "forward"){
@@ -136,11 +135,11 @@ define(
             if(this.dx < 0){
                 this.curr_sprite_array = this.robot_sprites.backward;
                 this.curr_sprite_index = (this.curr_sprite_index+0.2)%this.curr_sprite_array.length;
-            }
-            
-            if(this.dx > 0){
+            }else if(this.dx > 0){
                 this.curr_sprite_array = this.robot_sprites.forward;
                 this.curr_sprite_index = (this.curr_sprite_index+0.2)%this.curr_sprite_array.length;
+            }else{
+                this.curr_sprite_index = 0;
             }
 
             this.x += this.dx;
