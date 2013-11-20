@@ -5,7 +5,7 @@ define(
     // class definition
     function(GameObject, Resources){
         function Robot(x, y){
-            GameObject.prototype.constructor.call(this, x, y, 50, 35);
+            GameObject.prototype.constructor.call(this, x, y, 80, 60);
 
             this.instructions = new Array();
             this.standing_order = "standby";
@@ -21,17 +21,44 @@ define(
             this.on_ground = false;
             this.grounding_object = null;
 
-            this.forward_sprites = Resources.robot_sprites.forward;
-            this.backward_sprites = Resources.robot_sprites.backward;
-            this.jumping_sprites = Resources.robot_sprites.jump;            
-            
-            this.curr_sprite_array = this.forward_sprites;
-            this.curr_sprite_index = 0;
-            this.image = this.curr_sprite_array[this.curr_sprite_index];
+            this.robot_sprites = {"forward":[], "backward":[], "jump":[]};
 
-            // var temp_graphics = this.image.getContext('2d');
-            // temp_graphics.fillStyle = "#006060";
-            // temp_graphics.fillRect(0, 0, this.width, this.height);
+            var images = new Array();
+            var frame_width = 3072/24;
+            var frame_height = 1024/8;
+
+            var sprite_sheet = Resources.robot_sprite_sheet;
+
+            this.draw_width = this.width+100;
+            this.draw_height = this.height+100;
+            this.draw_x_offset = (this.draw_width-this.width)/2;
+            this.draw_y_offset = (this.draw_height-this.height)/2 + 10;
+            
+            for(var i = 0; i < 8; i++){
+                for(var j = 0; j < 24; j++){
+                    var c = document.createElement('canvas');
+                    c.width = this.draw_width;
+                    c.height = this.draw_height;
+                    var ctx = c.getContext('2d');
+                    ctx.drawImage(sprite_sheet, frame_width*j, frame_height*i, frame_width, frame_height, 0, 0, this.draw_width, this.draw_height);
+
+                    images.push(c);
+                }
+            }
+
+            var backward = this.robot_sprites.backward;
+            for(var i = 3; i < 12; i++){
+                backward.push(images[i]);
+            }
+
+            var forward = this.robot_sprites.forward;
+            for(var i = 99; i < 108; i++){
+                forward.push(images[i]);
+            }        
+
+            this.curr_sprite_array = this.robot_sprites.forward;
+
+            this.curr_sprite_index = 0;
         }
 
         Robot.prototype = new GameObject();
@@ -54,12 +81,8 @@ define(
                 this.curr_sprite_index = 0;
             }else if(this.standing_order == "backward"){
                 this.dx = robot_dx_zero - this.MAX_DX;
-                this.curr_sprite_array = this.backward_sprites;
-                this.curr_sprite_index = (this.curr_sprite_index+1)%this.curr_sprite_array.length;
             }else if(this.standing_order == "forward"){
                 this.dx = robot_dx_zero + this.MAX_DX;
-                this.curr_sprite_array = this.forward_sprites;
-                this.curr_sprite_index = (this.curr_sprite_index+1)%this.curr_sprite_array.length;
             }
             
             if (this.fall_death){
@@ -110,16 +133,33 @@ define(
                 }
             }
 
+            if(this.dx < 0){
+                this.curr_sprite_array = this.robot_sprites.backward;
+                this.curr_sprite_index = (this.curr_sprite_index+0.2)%this.curr_sprite_array.length;
+            }
+            
+            if(this.dx > 0){
+                this.curr_sprite_array = this.robot_sprites.forward;
+                this.curr_sprite_index = (this.curr_sprite_index+0.2)%this.curr_sprite_array.length;
+            }
+
             this.x += this.dx;
             this.y += this.dy;
         };
 
+        Robot.prototype.clear_old = function(graphics){
+            graphics.clearRect(this.last_render_x-2, this.last_render_y-2, this.draw_width+4, this.draw_height+4);
+        };
+
         Robot.prototype.draw = function(graphics, screen_x){
-            var object_draw_x = this.x-screen_x;
-            graphics.putImageData(this.image, object_draw_x, this.y);                
+            //draw, adjusting for draw offset
+            var draw_x = this.x - this.draw_x_offset;
+            var draw_y = this.y - this.draw_y_offset;
+            var object_draw_x = draw_x-screen_x;
+            graphics.drawImage(this.curr_sprite_array[Math.floor(this.curr_sprite_index)], Math.floor(object_draw_x), Math.floor(draw_y));                
             
-            this.last_render_x = object_draw_x;
-            this.last_render_y = this.y;
+            this.last_render_x = Math.floor(object_draw_x);
+            this.last_render_y = Math.floor(draw_y);
         };
 
         return Robot;

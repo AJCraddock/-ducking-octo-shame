@@ -41,9 +41,9 @@ define(
             draw: function(graphics, canvas){
                 graphics.fillStyle = '#FF0000';
                 var player_draw_x = (canvas.width/2)-(this.width/2);
-                graphics.fillRect(player_draw_x, this.y, this.width, this.height);
-                this.last_render_x = player_draw_x;
-                this.last_render_y = this.y;
+                graphics.fillRect(Math.floor(player_draw_x), Math.floor(this.y), this.width, this.height);
+                this.last_render_x = Math.floor(player_draw_x);
+                this.last_render_y = Math.floor(this.y);
             }
         };
 
