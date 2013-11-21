@@ -52,7 +52,7 @@
 				  echo "<td>" . $row['Score'] . "</td>";
 				  echo "<td>" . $row['Name'] . "</td>";
 				  echo "<td>" . $row['Date'] . "</td>";
-				  echo "</tr>"
+				  echo "</tr>";
 				  }
 				  
 				  echo "<tr>";
