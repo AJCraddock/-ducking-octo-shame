@@ -21,7 +21,15 @@ define(
                     {"type":"DangerousGameObject", "x":3630, "y":525, "width":800, "height":10},
                     //bill obstacle course
                     {"type":"GameObject", "x":1800, "y":360, "width":800, "height":100},
-                    {"type":"GameObject", "x":2600, "y":360, "width":800, "height":10},
+                    {"type":"DangerousGameObject", "x":2600, "y":360, "width":800, "height":10},
+                    {"type":"Mechanism", "x":2600, "y":310, "width":100, "height":10, "cycles_to_goal":200, "goals":[
+                            {"x":3450, "y":310},
+                            {"x":3450, "y":500},
+                            {"x":3450, "y":310}
+                        ]
+                    },
+                    //obstacle for player
+                    {"type":"DangerousGameObject", "x":2990, "y":280, "width":50, "height":50},
                     {"type":"GameObject", "x":2800, "y":475, "width":50, "height":50},
                     {"type":"GameObject", "x":3100, "y":465, "width":50, "height":60},
                     //bill starting position
@@ -51,8 +59,10 @@ define(
                     {"type":"DangerousGameObject", "x":6055, "y":525, "width":600, "height":100},
                     {"type":"DangerousGameObject", "x":6660, "y":525, "width":600, "height":100},
                     //obstacle platforms
-                    {"type":"GameObject", "x":800, "y":400, "width":100, "height":60},
+                    {"type":"DangerousGameObject", "x":800, "y":400, "width":70, "height":60},
                     {"type":"GameObject", "x":3000, "y":400, "width":600, "height":60},
+                    //bump in obstacle platform
+                    {"type":"GameObject", "x":3200, "y":300, "width":100, "height":100},
                     {"type":"GameObject", "x":5000, "y":400, "width":400, "height":60},
                     //robot position
                     {"type":"Robot", "x":80, "y":90},
