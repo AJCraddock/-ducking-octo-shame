@@ -21,16 +21,19 @@
 		</div>
 
 		<div class="content">
-			<b>Call the PHP server to get the top 20 high scores</b><br>
+			<br><h1><b>The Top 10 High Scores</b></h1>
 			<?php
-				echo "<br>help";
+				echo "<br>";
 				/*create connection*/
-				$con=mysqli_connect("127.0.0.1","markg7","markg7","billgamehs");
+				$con=mysqli_connect("127.0.0.1","mark_goodwin@lukescode.net","markg7","billgamehs");
+				
 				
 				/*check connection*/
 				if (mysqli_connect_errno($con)){
 					echo "Failed to connect to MySQL: " . mysqli_connect_error();
-					}
+				 } else {
+					echo "Connected!";
+				}
 				
 				/*Get High Scores and create table*/
 				
@@ -49,13 +52,39 @@
 				  echo "<td>" . $row['Score'] . "</td>";
 				  echo "<td>" . $row['Name'] . "</td>";
 				  echo "<td>" . $row['Date'] . "</td>";
-				  echo "</tr>";
+				  echo "</tr>"
 				  }
+				  
+				  echo "<tr>";
+				  echo "<td>7243</td>";
+				  echo "<td>Bill</td>";
+				  echo "<td>11-18-2013</td>";
+				  echo "</tr>";
+				  
+				  echo "<tr>";
+				  echo "<td>6452</td>";
+				  echo "<td>Gordon</td>";
+				  echo "<td>11-20-2013</td>";
+				  echo "</tr>";
+				  
+				  echo "<tr>";
+				  echo "<td>5542</td>";
+				  echo "<td>Kevin</td>";
+				  echo "<td>11-11-2013</td>";
+				  echo "</tr>";
+
+				  echo "<tr>";
+				  echo "<td>1</td>";
+				  echo "<td>Walter</td>";
+				  echo "<td>11-10-2013</td>";
+				  echo "</tr>";				  
 				echo "</table>";
 				
 				/*close connection*/
 				mysqli_close($con);
 			?>
+			
+			<p> &emsp; This is test data as implementation of a scoring system was not completed for the Senior Project Bill Game</p>
 		</div>
 
 		<div id="footer">

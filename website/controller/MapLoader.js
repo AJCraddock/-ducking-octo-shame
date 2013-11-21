@@ -2,10 +2,10 @@ define(
     //dependencies
     ['model/Map', 'model/Maps', 'model/Player', 'model/GameObject', 
     'model/GoalPlatform', 'model/Mechanism', 'model/DangerousGameObject',
-    'model/DangerousMechanism', 'model/Robot'],
+    'model/DangerousMechanism', 'model/Robot', 'model/Resources'],
 
     //module definition
-    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism, DangerousGameObject, DangerousMechanism, Robot){
+    function(Map, Maps, Player, GameObject, GoalPlatform, Mechanism, DangerousGameObject, DangerousMechanism, Robot, Resources){
 
         //constructor
         function MapLoader(){
@@ -40,7 +40,21 @@ define(
                     case 'DangerousGameObject':
                         game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
+                    case 'StaticFire':
+
+                        // // make the sprite play backwards and forwards
+                        // for(var k = 2; k >= 0; k--){
+                        //     for(var l = 4; l >= 0; l--){
+                        //         sprites.push(sprite_sheet, frame_width*l, frame_height*k, frame_width, frame_height, 0, 0, game_object.width, game_object.height);
+                        //     }
+                        // }
+
+                        game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
+                        break;
                     case 'DangerousMechanism':
+                        game_objects.push(new DangerousMechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals, null));
+                        break;
+                    case 'MovingFire':
                         game_objects.push(new DangerousMechanism(game_object.x, game_object.y, game_object.width, game_object.height, game_object.cycles_to_goal, game_object.goals, null));
                         break;
                     case 'Robot':
