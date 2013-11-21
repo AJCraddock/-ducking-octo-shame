@@ -6,6 +6,9 @@ define(
     function(){
         Resources = new Object();
         
+        Resources.background = new Image();
+        Resources.background.src = 'resources/images/cave.png';
+
         // load the robot's sprites
         Resources.robot_sprite_sheet = new Image();
         Resources.robot_sprite_sheet.src = 'resources/images/bill_sprite_sheet.png';

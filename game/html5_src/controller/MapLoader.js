@@ -58,12 +58,13 @@ define(
 
             var player = new Player(map_json.Player.x, map_json.Player.y);
             
+            var background_image = Resources.background;
             var background = document.createElement('canvas');
             background.width = 800;
             background.height = 600;
             var temp_graphics = background.getContext('2d');
-            temp_graphics.fillStyle = map_json.Background;
-            temp_graphics.fillRect(0, 0, background.width, background.height);
+            // temp_graphics.fillStyle = map_json.Background;
+            temp_graphics.drawImage(background_image, 0, 0, background.width, background.height);
             
             return new Map(player, robot, game_objects, background);
         };
