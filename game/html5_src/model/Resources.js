@@ -16,6 +16,10 @@ define(
         Resources.player_backward_sprite_sheet = new Image();
         Resources.player_backward_sprite_sheet.src = 'resources/images/player_sprite_sheet_backward.png';
 
+        // load fire sprite sheet
+        Resources.fire_sprite_sheet = new Image();
+        Resources.fire_sprite_sheet.src = 'resources/images/xplosion17.png';
+        
         return Resources;
     }
 );

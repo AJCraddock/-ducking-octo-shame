@@ -1,6 +1,5 @@
 To Do:
 
--Finish sprite for player 
 -put sprites on objects.
     -fireballs
     -spikes
