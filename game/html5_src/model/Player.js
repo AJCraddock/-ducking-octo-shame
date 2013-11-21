@@ -13,8 +13,8 @@ define(
             this.ddx = 0.10;
             this.MAX_DX = 5;
             this.MAX_DY = 10;
-            this.width = 50;
-            this.height = 75;
+            this.width = 25;
+            this.height = 65;
             this.on_ground = false;
 
             this.dead = false;
@@ -34,7 +34,7 @@ define(
             var forward_sprite_sheet = Resources.player_forward_sprite_sheet;
             var backward_sprite_sheet = Resources.player_backward_sprite_sheet;
 
-            this.draw_width = this.width;
+            this.draw_width = this.width+50;
             this.draw_height = this.height;
             this.draw_x_offset = (this.draw_width-this.width)/2;
             this.draw_y_offset = (this.draw_height-this.height)/2;
@@ -87,14 +87,15 @@ define(
 
             clear_old: function(graphics){
                 graphics.clearRect(this.last_render_x-2, this.last_render_y-2, 
-                this.width+4, this.height+4);
+                this.draw_width+4, this.draw_height+4);
             },
 
             draw: function(graphics, canvas){
-                var player_draw_x = (canvas.width/2)-(this.width/2);
-                graphics.drawImage(this.curr_sprite_array[Math.floor(this.curr_sprite_index)], Math.floor(player_draw_x), Math.floor(this.y));
+                var draw_y = this.y - this.draw_y_offset;
+                var player_draw_x = (canvas.width/2)-(this.draw_width/2);
+                graphics.drawImage(this.curr_sprite_array[Math.floor(this.curr_sprite_index)], Math.floor(player_draw_x), Math.floor(draw_y));
                 this.last_render_x = Math.floor(player_draw_x);
-                this.last_render_y = Math.floor(this.y);
+                this.last_render_y = Math.floor(draw_y);
             }
         };
 
