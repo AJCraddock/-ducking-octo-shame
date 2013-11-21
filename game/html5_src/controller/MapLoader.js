@@ -11,6 +11,10 @@ define(
         function MapLoader(){
             //fields
             this.curr_map_index = 0;
+			this.game_music = new Array();
+
+			this.game_music.push(new Audio("resources/music/audio1.mp3"));
+			this.game_music.push(new Audio("resources/music/audio2.mp3"));
         }
 
         // maps are dictionaries of player, game objects, and background
@@ -76,11 +80,18 @@ define(
             load_next_map: function(){
                 this.curr_map_index = (this.curr_map_index+1)%Maps.length;
                 var map = MapLoader.create_map(Maps[this.curr_map_index]);
-                return map;
+                var curr_song = Math.floor( Math.random() * 2);
+				
+				this.game_music[curr_song].play();
+				return map;
+				
             },
 
             reset_curr_map: function(){
                 var map = MapLoader.create_map(Maps[this.curr_map_index]);
+				var curr_song = Math.floor( Math.random() * 2);
+				
+				this.game_music[curr_song].play();
                 return map;
             }
         };
