@@ -75,7 +75,7 @@ define(
 
             draw: function(graphics, screen_x){
                 var object_draw_x = this.x-screen_x;
-                graphics.drawImage(this.image, object_draw_x, this.y);                
+                graphics.drawImage(this.image, Math.floor(object_draw_x), Math.floor(this.y));                
                 
                 this.last_render_x = object_draw_x;
                 this.last_render_y = this.y;
