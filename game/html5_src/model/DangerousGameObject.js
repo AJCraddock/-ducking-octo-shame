@@ -5,7 +5,16 @@ define(
     // class definition
     function(GameObject){
         function DangerousGameObject(x, y, width, height, sprites){
-            GameObject.prototype.constructor.call(this, x, y, width, height);
+            this.x = x;
+            this.y = y;
+
+            this.dx = 0;
+            this.dy = 0;
+
+            this.width = width;
+            this.height = height;
+
+            this.canvas = "fore";
 
             //create the default image for an object
             var sprite_sheet = Resources.fire_sprite_sheet;
@@ -19,7 +28,7 @@ define(
             this.draw_x_offset = (this.draw_width-this.width)/2;
             this.draw_y_offset = (this.draw_height-this.height)/2;
 
-            for(var k = 0; k < 3; k++){
+            for(var k = 1; k < 3; k++){
                 for(var l = 0; l < 5; l++){
                     var c = document.createElement('canvas');
                     c.width = this.draw_width;
@@ -30,7 +39,7 @@ define(
                 }
             }
 
-            for(var k = 2; k >= 0; k--){
+            for(var k = 2; k > 0; k--){
                 for(var l = 4; l >= 0; l--){
                     var c = document.createElement('canvas');
                     c.width = this.draw_width;
@@ -56,6 +65,10 @@ define(
             GameObject.prototype.handle_player_collision.call(this, player);
             player.dead = true;
         };
+
+        DangerousGameObject.prototype.clear_old = function(graphics){
+            graphics.clearRect(this.last_render_x-2, this.last_render_y-2, this.draw_width+4, this.draw_height+4);
+        }
 
         DangerousGameObject.prototype.draw = function(graphics, screen_x){
             var draw_x = this.x - this.draw_x_offset;

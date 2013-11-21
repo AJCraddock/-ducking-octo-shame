@@ -41,14 +41,6 @@ define(
                         game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
                     case 'StaticFire':
-
-                        // // make the sprite play backwards and forwards
-                        // for(var k = 2; k >= 0; k--){
-                        //     for(var l = 4; l >= 0; l--){
-                        //         sprites.push(sprite_sheet, frame_width*l, frame_height*k, frame_width, frame_height, 0, 0, game_object.width, game_object.height);
-                        //     }
-                        // }
-
                         game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
                     case 'DangerousMechanism':
