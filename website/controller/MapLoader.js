@@ -11,6 +11,11 @@ define(
         function MapLoader(){
             //fields
             this.curr_map_index = 0;
+			this.game_music = new Array();
+
+			this.game_music.push(new Audio("resources/music/audio1.mp3"));
+			this.game_music.push(new Audio("resources/music/audio2.mp3"));
+            this.curr_song = 0;
         }
 
         // maps are dictionaries of player, game objects, and background
@@ -41,14 +46,6 @@ define(
                         game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
                     case 'StaticFire':
-
-                        // // make the sprite play backwards and forwards
-                        // for(var k = 2; k >= 0; k--){
-                        //     for(var l = 4; l >= 0; l--){
-                        //         sprites.push(sprite_sheet, frame_width*l, frame_height*k, frame_width, frame_height, 0, 0, game_object.width, game_object.height);
-                        //     }
-                        // }
-
                         game_objects.push(new DangerousGameObject(game_object.x, game_object.y, game_object.width, game_object.height));
                         break;
                     case 'DangerousMechanism':
@@ -66,12 +63,13 @@ define(
 
             var player = new Player(map_json.Player.x, map_json.Player.y);
             
+            var background_image = Resources.background;
             var background = document.createElement('canvas');
             background.width = 800;
             background.height = 600;
             var temp_graphics = background.getContext('2d');
-            temp_graphics.fillStyle = map_json.Background;
-            temp_graphics.fillRect(0, 0, background.width, background.height);
+            // temp_graphics.fillStyle = map_json.Background;
+            temp_graphics.drawImage(background_image, 0, 0, background.width, background.height);
             
             return new Map(player, robot, game_objects, background);
         };
@@ -83,11 +81,22 @@ define(
             load_next_map: function(){
                 this.curr_map_index = (this.curr_map_index+1)%Maps.length;
                 var map = MapLoader.create_map(Maps[this.curr_map_index]);
-                return map;
+                this.game_music[this.curr_song].pause();
+                //this.game_music[this.curr_song].currentTime = 0;
+                this.curr_song = Math.floor( Math.random() * 2);
+				
+				this.game_music[this.curr_song].play();
+				return map;
+				
             },
 
             reset_curr_map: function(){
                 var map = MapLoader.create_map(Maps[this.curr_map_index]);
+				this.game_music[this.curr_song].pause();
+                //this.game_music[this.curr_song].currentTime = 0;
+                this.curr_song = Math.floor( Math.random() * 2);
+				
+				this.game_music[this.curr_song].play();
                 return map;
             }
         };
