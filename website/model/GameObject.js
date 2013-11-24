@@ -1,6 +1,9 @@
 define(
+    // dependencies
+    ['model/Resources'],
+
     //module definition
-    function(){
+    function(Resources){
         //constructor
         function GameObject(x, y, width, height, image){
             this.x = x;
@@ -13,18 +16,15 @@ define(
             this.height = height;
 
             this.canvas = "fore";
+
+            var dirt_image = Resources.dirt_image;
             
             //create the default image for an object
-            if(image == null){
-                this.image = document.createElement('canvas');
-                this.image.width = this.width;
-                this.image.height = this.height;
-                var temp_graphics = this.image.getContext('2d');
-                temp_graphics.fillStyle = "#FFFFFF";
-                temp_graphics.fillRect(0, 0, this.width, this.height);
-            }else{
-                this.image = image;
-            }
+            this.image = document.createElement('canvas');
+            this.image.width = this.width;
+            this.image.height = this.height;
+            var temp_graphics = this.image.getContext('2d');
+            temp_graphics.drawImage(dirt_image, 0, 0, this.width, this.height, 0, 0, this.width, this.height);
         }
 
         GameObject.prototype = {
@@ -75,7 +75,7 @@ define(
 
             draw: function(graphics, screen_x){
                 var object_draw_x = this.x-screen_x;
-                graphics.drawImage(this.image, object_draw_x, this.y);                
+                graphics.drawImage(this.image, Math.floor(object_draw_x), Math.floor(this.y));                
                 
                 this.last_render_x = object_draw_x;
                 this.last_render_y = this.y;

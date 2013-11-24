@@ -1,4 +1,11 @@
 To Do:
-    -Rewrite the part of MapLoader that builds an individual map so it's more idiomatic.
-        -rewrite using json string for map data and JSON.parse(jsonstring)
-    -Scripting interface
+
+-put sprites on objects.
+    -fireballs
+    -spikes
+    -goal platform
+    -ground (dirt texture)
+
+-Finish turret class
+-Design 3 levels
+-fix backspace problem
